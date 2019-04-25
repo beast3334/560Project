@@ -18,6 +18,7 @@ namespace Cis560DB
         private string _movieTitle;
         private string _director;
         private string _genre;
+        private string _language;
         private double _revenue;
         private DateTime _releaseDate;
         private List<string> castList = new List<string>();
@@ -46,6 +47,11 @@ namespace Cis560DB
             _genre = uxGenreBox.Text;
         }
 
+        private void uxLanguageBox_TextChanged(object sender, EventArgs e)
+        {
+            _language = uxLanguageBox.Text;
+        }
+
         private void uxProfitBox_TextChanged(object sender, EventArgs e)
         {
             try { 
@@ -64,7 +70,7 @@ namespace Cis560DB
         private void uxAddMovieButton_Click(object sender, EventArgs e)
         {         
             int movieId;
-            if (_movieTitle != null && _director != null && _releaseDate != null)
+            if (_movieTitle != null && _director != null && _releaseDate != null && _genre != null && _revenue != null && _language !=null)
             {
                 bool errorFree = true;
                 try
@@ -184,36 +190,9 @@ namespace Cis560DB
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void uxDBInsertForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'cis560_team24DataSet.Actor' table. You can move, or remove it, as needed.
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void uxAddActor_Click(object sender, EventArgs e)
         {
-            bs.Add(uxFirstName.Text + "|" + uxLastName.Text + "|" + uxGender.Text + "|" + uxRole.Text);
-            
+            bs.Add(uxFirstName.Text + "|" + uxLastName.Text + "|" + uxGender.Text + "|" + uxRole.Text);   
         }
         private int GetNextKey(string query, SqlConnection connection)
         {

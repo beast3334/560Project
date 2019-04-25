@@ -136,9 +136,11 @@
             // uxLanguageBox
             // 
             this.uxLanguageBox.Location = new System.Drawing.Point(291, 93);
+            this.uxLanguageBox.MaxLength = 2;
             this.uxLanguageBox.Name = "uxLanguageBox";
             this.uxLanguageBox.Size = new System.Drawing.Size(74, 20);
             this.uxLanguageBox.TabIndex = 22;
+            this.uxLanguageBox.TextChanged += new System.EventHandler(this.uxLanguageBox_TextChanged);
             // 
             // uxAddMovieButton
             // 
@@ -220,7 +222,6 @@
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 31;
             this.label1.Text = "Cast:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // actorBindingSource
             // 
@@ -268,7 +269,6 @@
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 39;
             this.label5.Text = "Role:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // uxAddActor
             // 
@@ -331,7 +331,6 @@
             this.uxFirstName.Name = "uxFirstName";
             this.uxFirstName.Size = new System.Drawing.Size(78, 20);
             this.uxFirstName.TabIndex = 33;
-            this.uxFirstName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // uxDBInsertForm
             // 
@@ -356,7 +355,6 @@
             this.Controls.Add(this.uxTitleBox);
             this.Name = "uxDBInsertForm";
             this.Text = "DBInsertForm";
-            this.Load += new System.EventHandler(this.uxDBInsertForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
