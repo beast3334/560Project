@@ -18,9 +18,7 @@ namespace Cis560DB
         private string _movieTitle;
         private string _director;
         private string _genre;
-        private int _rating;
         private double _revenue;
-        private double _productionCost;
         private DateTime _releaseDate;
         private List<string> castList = new List<string>();
         private BindingList<string> bs = new BindingList<string>();
@@ -48,7 +46,6 @@ namespace Cis560DB
             _genre = uxGenreBox.Text;
         }
 
-
         private void uxProfitBox_TextChanged(object sender, EventArgs e)
         {
             try { 
@@ -59,22 +56,17 @@ namespace Cis560DB
             }
         }
 
-        private void uxCostBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void uxDatePicker_ValueChanged(object sender, EventArgs e)
         {
             _releaseDate = uxDatePicker.Value.Date;
         }
 
         private void uxAddMovieButton_Click(object sender, EventArgs e)
-        {
-         
+        {         
             int movieId;
             if (_movieTitle != null && _director != null && _releaseDate != null)
             {
+                bool errorFree = true;
                 try
                 {
                     using (SqlConnection connection = new SqlConnection("Data Source = mssql.cs.ksu.edu; Initial Catalog = cis560_team24; Integrated Security = True"))
@@ -93,7 +85,6 @@ namespace Cis560DB
                             cmd.CommandType = CommandType.Text;
                             cmd.ExecuteNonQuery();
                             cmd.Parameters.Clear();
-
                         }
 
                         //insert Actor info (if needed)
@@ -118,9 +109,7 @@ namespace Cis560DB
                                     cmd.ExecuteNonQuery();
                                     cmd.Parameters.Clear();
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 actorIds.Add(GetActorId(actor, connection));
                             }
                             actorRoles.Add(pieces[3]);
@@ -132,7 +121,6 @@ namespace Cis560DB
                         {
                             using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.Cast (ActorId, MovieId, Role) VALUES (@param1, @param2, @param3)", connection))
                             {
-
                                 cmd.Parameters.Add("@param1", SqlDbType.Int).Value = actorid;
                                 cmd.Parameters.Add("@param2", SqlDbType.Int).Value = movieId;
                                 cmd.Parameters.Add("@param3", SqlDbType.NVarChar, 64).Value = actorRoles.ElementAt(i);
@@ -142,39 +130,31 @@ namespace Cis560DB
                                 cmd.Parameters.Clear();
                                 i++;
                             }
-
                         }
                         if (!CheckifDirectorExists(connection))
                         {
-
                             //insert Director
                             using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.Director (DirectorId, FirstName, LastName) VALUES (@param1, @param2, @param3)", connection))
                             {
                                 string[] pieces = uxDirectorBox.Text.Split();
                                 int directorid = GetNextKey("MovieInfo.GET_HIGHEST_DIRECTOR_KEY", connection);
                                 directorIds.Add(directorid);
-                                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = directorid ;
+                                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = directorid;
                                 cmd.Parameters.Add("@param2", SqlDbType.NVarChar, 32).Value = pieces[0];
                                 cmd.Parameters.Add("@param3", SqlDbType.NVarChar, 64).Value = pieces[1];
                                 cmd.CommandType = CommandType.Text;
                                 cmd.ExecuteNonQuery();
                                 cmd.Parameters.Clear();
-
-
-
                             }
-                        }
-                        else
-                        {
+                        } else {
                             directorIds.Add(GetDirectorId(connection));
                         }
 
                         //insert MovieDirection
-                        foreach(int directorid in directorIds)
+                        foreach (int directorid in directorIds)
                         {
                             using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.MovieDirector (DirectorId, MovieId) VALUES (@param1, @param2)", connection))
                             {
-
                                 cmd.Parameters.Add("@param1", SqlDbType.Int).Value = directorid;
                                 cmd.Parameters.Add("@param2", SqlDbType.Int).Value = movieId;
 
@@ -184,18 +164,23 @@ namespace Cis560DB
                             }
                         }
                     }
-                }
-
-                catch(Exception ex)
-                {
+                } catch (System.Data.SqlClient.SqlException) {
+                    MessageBox.Show("Movie already exist in the database");
+                    errorFree = false;
+                } catch (System.IndexOutOfRangeException){
+                    MessageBox.Show("Director needs a first name and last name.");
+                    errorFree = false;
+                } catch (Exception ex) {
                     MessageBox.Show("Something went wrong, please try again. ( " + ex.ToString() +  ")" );
+                    errorFree = false;
+                }
+                if (errorFree) {
+                    MessageBox.Show("Movie Added!");
                 }
                 SubmitEvent();
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Please fill out all fields.");
+            } else {
+                MessageBox.Show("Please fill out all required (*) fields.");
             }
         }
 
