@@ -19,31 +19,29 @@ namespace Cis560DB
         //Delegate
         public event enableButtonsSearch _enableButtons;
 
-
         //Sql commands
         SqlConnection sqlconnection;
         SqlCommand sqlcommand;
-        string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
-
-        string Query;
         DataSet dataset;
         DataTable datatable;
         SqlDataAdapter sqladapter;
 
+        // String used to establsh connection to sql database
+        string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
 
+        string Query;
 
-        /*
-         * Initializes the DBSearch Form
-         */
+        /// <summary>
+        /// Initializes the DBSearch Form
+        /// </summary>
         public uxDBSearchForm()
         {
             InitializeComponent();
         }
 
-        /*
-         * Loads data from sql tables into the DataGridView uxSearchGrid after the DBSearchForm
-         * is load by the user. 
-         */
+        /// <summary>
+        /// Loads data from sql tables into the DataGridView uxSearchGrid after the DBSearchForm is load by the user.
+        /// </summary>
         private void uxDBSearchForm_Load(object sender, EventArgs e)
         {
             // This line of code loads data into the 'cis560_team24DataSet3.Movie' table. You can move, or remove it, as needed.
@@ -54,9 +52,9 @@ namespace Cis560DB
             UpdateDataBox();
         }
 
-        /*
-         * Used to help filter data accordingly in the uxSearchGrid per user's request. 
-         */
+        /// <summary>
+        /// Used to help filter data accordingly in the uxSearchGrid per user's request.
+        /// </summary>
         private void uxTitleBox_TextChanged(object sender, EventArgs e)
         {
             DataView DV = new DataView(datatable);
@@ -64,9 +62,10 @@ namespace Cis560DB
             uxSearchGrid.DataSource = DV;
         }
 
-        /*
-         * 
-         */
+        /// <summary>
+        /// Retrieves additional information about a selected movie from the uxSearchGrid movie. Information includes 
+        /// a list of actors amd coresponding rol roles in the and movie ratings and reviews.
+        /// </summary>
         private void uxMoreInfoButton_Click(object sender, EventArgs e)
         {
             ExpandedInfo ei = new ExpandedInfo();
@@ -103,6 +102,7 @@ namespace Cis560DB
                 uxSearchGrid.DataSource = DV;
             }
         }
+
         private void UpdateDataBox()
         {
             sqlconnection = new SqlConnection(ConnectionString);
@@ -117,8 +117,8 @@ namespace Cis560DB
 
 
         /*
-         * When the form closes, uses the delegate to unlock the uxSearchButton in the 
-         * DBMenu Form
+         * When the form closes, uses the delegate to unlock the buttons in the 
+         * DBMenu Form. 
          */
         private void ClosingForm(object sender, FormClosedEventArgs e)
         {
