@@ -71,6 +71,9 @@
             this.Controls.Add(this.uxAddReviewButton);
             this.Controls.Add(this.uxInsertMoviewButton);
             this.Controls.Add(this.uxSearchButton);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 226);
+            this.MinimumSize = new System.Drawing.Size(300, 226);
             this.Name = "uxDBMenu";
             this.Text = "DBMenu";
             this.ResumeLayout(false);
