@@ -24,7 +24,7 @@ namespace Cis560DB
         private List<string> castList = new List<string>();
         private BindingList<string> bs = new BindingList<string>();
 
-        public enableInsertButton SubmitEvent;
+        public enableInsertButton _enableButton;
 
         public uxDBInsertForm()
         {
@@ -183,7 +183,6 @@ namespace Cis560DB
                 if (errorFree) {
                     MessageBox.Show("Movie Added!");
                 }
-                SubmitEvent();
                 Close();
             } else {
                 MessageBox.Show("Please fill out all required (*) fields.");
@@ -289,6 +288,11 @@ namespace Cis560DB
                 }
             }
             return 0;
+        }
+
+        private void ClosingForm(object sender, FormClosedEventArgs e)
+        {
+            _enableButton();
         }
     }
 }

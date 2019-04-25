@@ -25,7 +25,7 @@ namespace Cis560DB
         {
             if (uxInsertMoviewButton.Enabled == true) {
                 uxInsertForm = new uxDBInsertForm();
-                uxInsertForm.SubmitEvent  += new enableInsertButton(uxDBInsertForm_ButtonEnabled);
+                uxInsertForm._enableButton  += new enableInsertButton(uxDBInsertForm_ButtonEnabled);
                 uxInsertForm.Show();
                 uxInsertMoviewButton.Enabled = false;
             }
@@ -35,7 +35,7 @@ namespace Cis560DB
         {
             if (uxSearchButton.Enabled == true) {
                 uxSearchForm = new uxDBSearchForm();
-                uxSearchForm.SubmitEvent += new enableSearchButton(uxDBSearchForm_ButtonEnabled);
+                uxSearchForm._enableButton += new enableSearchButton(uxDBSearchForm_ButtonEnabled);
                 uxSearchForm.Show();
                 uxSearchButton.Enabled = false;
             }

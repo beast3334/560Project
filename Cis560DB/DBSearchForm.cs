@@ -15,7 +15,7 @@ namespace Cis560DB
 
     public partial class uxDBSearchForm : Form
     {
-        public event enableSearchButton SubmitEvent;
+        public event enableSearchButton _enableButton;
 
         public uxDBSearchForm()
         {
@@ -31,12 +31,6 @@ namespace Cis560DB
         DataTable datatable;
         SqlDataAdapter sqladapter;
 
-        private void uxSearchButton_Click(object sender, EventArgs e)
-        {
-            SubmitEvent();
-            Close();
-        }
-
         private void uxDBSearchForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'cis560_team24DataSet3.Movie' table. You can move, or remove it, as needed.
@@ -45,19 +39,6 @@ namespace Cis560DB
             this.directorTableAdapter.Fill(this.cis560_team24DataSet2.Director);
             // TODO: This line of code loads data into the 'cis560_team24DataSet1.Movie' table. You can move, or remove it, as needed.
             UpdateDataBox();
-
-        }
-
-        private void movieIdToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
 
         }
 
@@ -111,6 +92,11 @@ namespace Cis560DB
             sqladapter.SelectCommand = sqlcommand;
             sqladapter.Fill(datatable);
             uxSearchGrid.DataSource = datatable;
+        }
+
+        private void ClosingForm(object sender, FormClosedEventArgs e)
+        {
+            _enableButton();
         }
     }
 }

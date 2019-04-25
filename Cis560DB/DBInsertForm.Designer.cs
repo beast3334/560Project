@@ -338,7 +338,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(787, 337);
-            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uxDatePicker);
             this.Controls.Add(this.uxDateLabel);
@@ -355,6 +354,7 @@
             this.Controls.Add(this.uxTitleBox);
             this.Name = "uxDBInsertForm";
             this.Text = "DBInsertForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

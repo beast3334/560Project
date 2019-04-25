@@ -65,7 +65,7 @@
             this.uxSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxSearchBox.Location = new System.Drawing.Point(370, 21);
             this.uxSearchBox.Name = "uxSearchBox";
-            this.uxSearchBox.Size = new System.Drawing.Size(218, 30);
+            this.uxSearchBox.Size = new System.Drawing.Size(218, 26);
             this.uxSearchBox.TabIndex = 2;
             this.uxSearchBox.TextChanged += new System.EventHandler(this.uxTitleBox_TextChanged);
             // 
@@ -75,7 +75,7 @@
             this.uxSearchByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxSearchByLabel.Location = new System.Drawing.Point(255, 21);
             this.uxSearchByLabel.Name = "uxSearchByLabel";
-            this.uxSearchByLabel.Size = new System.Drawing.Size(109, 25);
+            this.uxSearchByLabel.Size = new System.Drawing.Size(86, 20);
             this.uxSearchByLabel.TabIndex = 21;
             this.uxSearchByLabel.Text = "Search By:";
             // 
@@ -203,7 +203,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 397);
-            this.ControlBox = false;
             this.Controls.Add(this.uxDeleteButton);
             this.Controls.Add(this.uxMoreInfoButton);
             this.Controls.Add(this.uxSearchGrid);
@@ -211,6 +210,7 @@
             this.Controls.Add(this.uxSearchBox);
             this.Name = "uxDBSearchForm";
             this.Text = "Rating";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.uxDBSearchForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
