@@ -34,28 +34,29 @@
             this.cis560team24DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.uxSearchGrid = new System.Windows.Forms.DataGridView();
+            this.movieBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cis560_team24DataSet3 = new Cis560DB.cis560_team24DataSet3();
             this.cis560_team24DataSet = new Cis560DB.cis560_team24DataSet();
             this.cis560team24DataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cis560_team24DataSet2 = new Cis560DB.cis560_team24DataSet2();
             this.directorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.directorTableAdapter = new Cis560DB.cis560_team24DataSet2TableAdapters.DirectorTableAdapter();
-            this.cis560_team24DataSet3 = new Cis560DB.cis560_team24DataSet3();
-            this.movieBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.movieTableAdapter = new Cis560DB.cis560_team24DataSet3TableAdapters.MovieTableAdapter();
+            this.uxMoreInfoButton = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uxMoreInfoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxSearchGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // uxSearchBox
@@ -89,6 +90,7 @@
             this.uxSearchGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.uxSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uxSearchGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
@@ -100,6 +102,16 @@
             this.uxSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uxSearchGrid.Size = new System.Drawing.Size(852, 284);
             this.uxSearchGrid.TabIndex = 39;
+            // 
+            // movieBindingSource1
+            // 
+            this.movieBindingSource1.DataMember = "Movie";
+            this.movieBindingSource1.DataSource = this.cis560_team24DataSet3;
+            // 
+            // cis560_team24DataSet3
+            // 
+            this.cis560_team24DataSet3.DataSetName = "cis560_team24DataSet3";
+            this.cis560_team24DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cis560_team24DataSet
             // 
@@ -125,19 +137,26 @@
             // 
             this.directorTableAdapter.ClearBeforeFill = true;
             // 
-            // cis560_team24DataSet3
-            // 
-            this.cis560_team24DataSet3.DataSetName = "cis560_team24DataSet3";
-            this.cis560_team24DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // movieBindingSource1
-            // 
-            this.movieBindingSource1.DataMember = "Movie";
-            this.movieBindingSource1.DataSource = this.cis560_team24DataSet3;
-            // 
             // movieTableAdapter
             // 
             this.movieTableAdapter.ClearBeforeFill = true;
+            // 
+            // uxMoreInfoButton
+            // 
+            this.uxMoreInfoButton.Location = new System.Drawing.Point(328, 352);
+            this.uxMoreInfoButton.Name = "uxMoreInfoButton";
+            this.uxMoreInfoButton.Size = new System.Drawing.Size(214, 33);
+            this.uxMoreInfoButton.TabIndex = 40;
+            this.uxMoreInfoButton.Text = "More Info";
+            this.uxMoreInfoButton.UseVisualStyleBackColor = true;
+            this.uxMoreInfoButton.Click += new System.EventHandler(this.uxMoreInfoButton_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MovieId";
+            this.Column1.HeaderText = "MovieId";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -167,15 +186,6 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
-            // uxMoreInfoButton
-            // 
-            this.uxMoreInfoButton.Location = new System.Drawing.Point(328, 352);
-            this.uxMoreInfoButton.Name = "uxMoreInfoButton";
-            this.uxMoreInfoButton.Size = new System.Drawing.Size(214, 33);
-            this.uxMoreInfoButton.TabIndex = 40;
-            this.uxMoreInfoButton.Text = "More Info";
-            this.uxMoreInfoButton.UseVisualStyleBackColor = true;
-            // 
             // uxDBSearchForm
             // 
             this.AccessibleName = "uxRatingForm";
@@ -193,12 +203,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxSearchGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.directorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cis560_team24DataSet3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,10 +233,11 @@
         private cis560_team24DataSet3 cis560_team24DataSet3;
         private System.Windows.Forms.BindingSource movieBindingSource1;
         private cis560_team24DataSet3TableAdapters.MovieTableAdapter movieTableAdapter;
+        private System.Windows.Forms.Button uxMoreInfoButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.Button uxMoreInfoButton;
     }
 }

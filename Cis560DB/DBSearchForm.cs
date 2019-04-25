@@ -45,7 +45,7 @@ namespace Cis560DB
             this.directorTableAdapter.Fill(this.cis560_team24DataSet2.Director);
             // TODO: This line of code loads data into the 'cis560_team24DataSet1.Movie' table. You can move, or remove it, as needed.
             sqlconnection = new SqlConnection(ConnectionString);
-            Query = "Select MovieTitle, ReleaseDate, [Language], AllTimeBoxOffice FROM MovieInfo.Movie";
+            Query = "Select * FROM MovieInfo.Movie";
             sqlcommand = new SqlCommand(Query, sqlconnection);
             sqladapter = new SqlDataAdapter();
             datatable = new DataTable();
@@ -73,6 +73,16 @@ namespace Cis560DB
             DataView DV = new DataView(datatable);
             DV.RowFilter = string.Format("MovieTitle LIKE '%{0}%'", uxSearchBox.Text);
             uxSearchGrid.DataSource = DV;
+        }
+
+        private void uxMoreInfoButton_Click(object sender, EventArgs e)
+        {
+            ExpandedInfo ei = new ExpandedInfo();
+            string s = uxSearchGrid.SelectedCells[0].Value.ToString();
+            ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
+            ei.Query2 = "Select * FROM MovieInfo.Rating";
+            ei.Show();
+            
         }
     }
 }
