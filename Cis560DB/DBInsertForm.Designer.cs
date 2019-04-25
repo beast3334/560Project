@@ -61,9 +61,9 @@
             // 
             // uxTitleBox
             // 
-            this.uxTitleBox.Location = new System.Drawing.Point(105, 9);
+            this.uxTitleBox.Location = new System.Drawing.Point(119, 9);
             this.uxTitleBox.Name = "uxTitleBox";
-            this.uxTitleBox.Size = new System.Drawing.Size(260, 20);
+            this.uxTitleBox.Size = new System.Drawing.Size(246, 20);
             this.uxTitleBox.TabIndex = 1;
             this.uxTitleBox.TextChanged += new System.EventHandler(this.uxTitleBox_TextChanged);
             // 
@@ -73,9 +73,9 @@
             this.uxMovieLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxMovieLabel.Location = new System.Drawing.Point(12, 9);
             this.uxMovieLabel.Name = "uxMovieLabel";
-            this.uxMovieLabel.Size = new System.Drawing.Size(87, 20);
+            this.uxMovieLabel.Size = new System.Drawing.Size(101, 20);
             this.uxMovieLabel.TabIndex = 7;
-            this.uxMovieLabel.Text = "Movie Title:";
+            this.uxMovieLabel.Text = "Movie Title * :";
             // 
             // uxDirectorLabel
             // 
@@ -83,9 +83,9 @@
             this.uxDirectorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxDirectorLabel.Location = new System.Drawing.Point(12, 35);
             this.uxDirectorLabel.Name = "uxDirectorLabel";
-            this.uxDirectorLabel.Size = new System.Drawing.Size(145, 20);
+            this.uxDirectorLabel.Size = new System.Drawing.Size(163, 20);
             this.uxDirectorLabel.TabIndex = 8;
-            this.uxDirectorLabel.Text = "Director (First Last)";
+            this.uxDirectorLabel.Text = "Director (First Last) * :";
             // 
             // uxDirectorBox
             // 
@@ -101,9 +101,9 @@
             this.uxProfitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxProfitLabel.Location = new System.Drawing.Point(12, 61);
             this.uxProfitLabel.Name = "uxProfitLabel";
-            this.uxProfitLabel.Size = new System.Drawing.Size(150, 20);
+            this.uxProfitLabel.Size = new System.Drawing.Size(168, 20);
             this.uxProfitLabel.TabIndex = 18;
-            this.uxProfitLabel.Text = "Box Office Revenue";
+            this.uxProfitLabel.Text = "Box Office Revenue * :";
             // 
             // uxCostLabel
             // 
@@ -111,9 +111,9 @@
             this.uxCostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxCostLabel.Location = new System.Drawing.Point(12, 91);
             this.uxCostLabel.Name = "uxCostLabel";
-            this.uxCostLabel.Size = new System.Drawing.Size(259, 20);
+            this.uxCostLabel.Size = new System.Drawing.Size(273, 20);
             this.uxCostLabel.TabIndex = 19;
-            this.uxCostLabel.Text = "Language (two character identifier):";
+            this.uxCostLabel.Text = "Language (two character identifier) * :";
             // 
             // uxProfitBox
             // 
@@ -157,9 +157,9 @@
             this.uxGenreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxGenreLabel.Location = new System.Drawing.Point(385, 9);
             this.uxGenreLabel.Name = "uxGenreLabel";
-            this.uxGenreLabel.Size = new System.Drawing.Size(54, 20);
+            this.uxGenreLabel.Size = new System.Drawing.Size(72, 20);
             this.uxGenreLabel.TabIndex = 25;
-            this.uxGenreLabel.Text = "Genre";
+            this.uxGenreLabel.Text = "Genre * :";
             // 
             // uxGenreBox
             // 
@@ -199,9 +199,9 @@
             this.uxDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxDateLabel.Location = new System.Drawing.Point(12, 121);
             this.uxDateLabel.Name = "uxDateLabel";
-            this.uxDateLabel.Size = new System.Drawing.Size(107, 20);
+            this.uxDateLabel.Size = new System.Drawing.Size(125, 20);
             this.uxDateLabel.TabIndex = 27;
-            this.uxDateLabel.Text = "Release Date";
+            this.uxDateLabel.Text = "Release Date * :";
             // 
             // uxDatePicker
             // 
