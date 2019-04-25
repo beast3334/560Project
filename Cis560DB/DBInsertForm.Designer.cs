@@ -220,7 +220,6 @@
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 31;
             this.label1.Text = "Cast:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // actorBindingSource
             // 
@@ -268,7 +267,6 @@
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 39;
             this.label5.Text = "Role:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // uxAddActor
             // 

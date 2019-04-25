@@ -23,6 +23,7 @@ namespace Cis560DB
 
         public string Query1;
         public string Query2;
+        public string Query3;
         public DataSet dataset;
         public DataTable datatable1;
         public DataTable datatable2;
@@ -47,6 +48,7 @@ namespace Cis560DB
             sqladapter.SelectCommand = sqlcommand;
             uxReviewGrid.DataSource = datatable2;
             sqladapter.Fill(datatable2);
+            uxDirectorLabel.Text = "Director: " + GetDirector(sqlconnection);
         }
 
         private void uxCastGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -57,6 +59,20 @@ namespace Cis560DB
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        private string GetDirector(SqlConnection connection)
+        {
+            SqlCommand cmd = new SqlCommand(Query3, connection);
+            connection.Open();
+            cmd.CommandType = CommandType.Text;
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    return rdr[0] + " " + rdr[1].ToString();
+                }
+            }
+            return "";
         }
     }
 }

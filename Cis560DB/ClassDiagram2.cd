@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cis560DB.uxDBMenu">
+    <Position X="6.75" Y="2" Width="2.75" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="uxAddReviewButton" Hidden="true" />
+      <Field Name="uxInsertMoviewButton" Hidden="true" />
+      <Field Name="uxSearchButton" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEMAAAAAAiAAAAAAAgiAIAAKAAAIAAAIAAAAAgAAAAA=</HashCode>
+      <FileName>DBMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cis560DB.uxDBInsertForm">
+    <Position X="8.75" Y="6.75" Width="2.75" />
+    <Members>
+      <Field Name="actorBindingSource" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="panel1" Hidden="true" />
+      <Field Name="uxAddActor" Hidden="true" />
+      <Field Name="uxAddMovieButton" Hidden="true" />
+      <Field Name="uxCastList" Hidden="true" />
+      <Field Name="uxCostLabel" Hidden="true" />
+      <Field Name="uxDateLabel" Hidden="true" />
+      <Field Name="uxDatePicker" Hidden="true" />
+      <Field Name="uxDirectorBox" Hidden="true" />
+      <Field Name="uxDirectorLabel" Hidden="true" />
+      <Field Name="uxFirstName" Hidden="true" />
+      <Field Name="uxGender" Hidden="true" />
+      <Field Name="uxGenreBox" Hidden="true" />
+      <Field Name="uxGenreLabel" Hidden="true" />
+      <Field Name="uxLanguageBox" Hidden="true" />
+      <Field Name="uxLastName" Hidden="true" />
+      <Field Name="uxMovieLabel" Hidden="true" />
+      <Field Name="uxProfitBox" Hidden="true" />
+      <Field Name="uxProfitLabel" Hidden="true" />
+      <Field Name="uxRole" Hidden="true" />
+      <Field Name="uxTitleBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BgAoAAQ4ACIIAREFiIKIADASIDAAEgBEACgQLWECBAA=</HashCode>
+      <FileName>DBInsertForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cis560DB.uxDBReviewForm">
+    <Position X="6.25" Y="6.75" Width="2" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="groupBox1" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="uxFirstName" Hidden="true" />
+      <Field Name="uxFiveStar" Hidden="true" />
+      <Field Name="uxFourStar" Hidden="true" />
+      <Field Name="uxMovieGrid" Hidden="true" />
+      <Field Name="uxOneStar" Hidden="true" />
+      <Field Name="uxSearchBox" Hidden="true" />
+      <Field Name="uxSearchByLabel" Hidden="true" />
+      <Field Name="uxSubmitButton" Hidden="true" />
+      <Field Name="uxThreeStar" Hidden="true" />
+      <Field Name="uxTwoStar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEQBBcgCAgKBICAACAAQACAAAACghApDAAAAgACJA=</HashCode>
+      <FileName>DBReviewForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cis560DB.uxDBSearchForm">
+    <Position X="4" Y="6.75" Width="1.75" />
+    <Members>
+      <Field Name="allTimeBoxOfficeDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="cis560_team24DataSet" Hidden="true" />
+      <Field Name="cis560_team24DataSet2" Hidden="true" />
+      <Field Name="cis560_team24DataSet3" Hidden="true" />
+      <Field Name="cis560team24DataSetBindingSource" Hidden="true" />
+      <Field Name="cis560team24DataSetBindingSource1" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="directorBindingSource" Hidden="true" />
+      <Field Name="directorTableAdapter" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="languageDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="movieBindingSource" Hidden="true" />
+      <Field Name="movieBindingSource1" Hidden="true" />
+      <Field Name="movieIdDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="movieTableAdapter" Hidden="true" />
+      <Field Name="movieTitleDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="releaseDateDataGridViewTextBoxColumn" Hidden="true" />
+      <Field Name="uxDeleteButton" Hidden="true" />
+      <Field Name="uxMoreInfoButton" Hidden="true" />
+      <Field Name="uxSearchBox" Hidden="true" />
+      <Field Name="uxSearchByLabel" Hidden="true" />
+      <Field Name="uxSearchGrid" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAwJEgCAAAABCAACAgAACCAAAiphgjLAAAgEGIAA=</HashCode>
+      <FileName>DBSearchForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cis560DB.ExpandedInfo">
+    <Position X="3.75" Y="12.25" Width="2" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="uxCastGrid" Hidden="true" />
+      <Field Name="uxCastLabel" Hidden="true" />
+      <Field Name="uxReviewGrid" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAgCAAABBCAACAAAACAAASAAgABDAAAIAMAgA=</HashCode>
+      <FileName>ExpandedInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
