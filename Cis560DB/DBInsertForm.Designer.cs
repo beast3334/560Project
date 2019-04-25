@@ -45,16 +45,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.actorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.uxFirstName = new System.Windows.Forms.TextBox();
-            this.uxLastName = new System.Windows.Forms.TextBox();
-            this.uxGender = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.uxAddActor = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.uxRole = new System.Windows.Forms.TextBox();
             this.uxCastList = new System.Windows.Forms.ListBox();
+            this.uxRole = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.uxAddActor = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.uxGender = new System.Windows.Forms.TextBox();
+            this.uxLastName = new System.Windows.Forms.TextBox();
+            this.uxFirstName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -83,15 +83,15 @@
             this.uxDirectorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxDirectorLabel.Location = new System.Drawing.Point(12, 35);
             this.uxDirectorLabel.Name = "uxDirectorLabel";
-            this.uxDirectorLabel.Size = new System.Drawing.Size(65, 20);
+            this.uxDirectorLabel.Size = new System.Drawing.Size(145, 20);
             this.uxDirectorLabel.TabIndex = 8;
-            this.uxDirectorLabel.Text = "Director";
+            this.uxDirectorLabel.Text = "Director (First Last)";
             // 
             // uxDirectorBox
             // 
-            this.uxDirectorBox.Location = new System.Drawing.Point(105, 35);
+            this.uxDirectorBox.Location = new System.Drawing.Point(195, 35);
             this.uxDirectorBox.Name = "uxDirectorBox";
-            this.uxDirectorBox.Size = new System.Drawing.Size(260, 20);
+            this.uxDirectorBox.Size = new System.Drawing.Size(170, 20);
             this.uxDirectorBox.TabIndex = 9;
             this.uxDirectorBox.TextChanged += new System.EventHandler(this.uxDirectorBox_TextChanged);
             // 
@@ -101,9 +101,9 @@
             this.uxProfitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxProfitLabel.Location = new System.Drawing.Point(12, 61);
             this.uxProfitLabel.Name = "uxProfitLabel";
-            this.uxProfitLabel.Size = new System.Drawing.Size(273, 20);
+            this.uxProfitLabel.Size = new System.Drawing.Size(150, 20);
             this.uxProfitLabel.TabIndex = 18;
-            this.uxProfitLabel.Text = "Box Office Revenue( per million USD)";
+            this.uxProfitLabel.Text = "Box Office Revenue";
             // 
             // uxCostLabel
             // 
@@ -127,9 +127,9 @@
             "Sci-Fi",
             "Space-Opera",
             "Thriller"});
-            this.uxProfitBox.Location = new System.Drawing.Point(291, 61);
+            this.uxProfitBox.Location = new System.Drawing.Point(195, 61);
             this.uxProfitBox.Name = "uxProfitBox";
-            this.uxProfitBox.Size = new System.Drawing.Size(74, 20);
+            this.uxProfitBox.Size = new System.Drawing.Size(170, 20);
             this.uxProfitBox.TabIndex = 21;
             this.uxProfitBox.TextChanged += new System.EventHandler(this.uxProfitBox_TextChanged);
             // 
@@ -139,7 +139,6 @@
             this.uxLanguageBox.Name = "uxLanguageBox";
             this.uxLanguageBox.Size = new System.Drawing.Size(74, 20);
             this.uxLanguageBox.TabIndex = 22;
-            this.uxLanguageBox.TextChanged += new System.EventHandler(this.uxCostBox_TextChanged);
             // 
             // uxAddMovieButton
             // 
@@ -227,12 +226,6 @@
             // 
             this.actorBindingSource.DataMember = "Actor";
             // 
-            // cis560_team24DataSet
-            // 
-            // 
-            // actorTableAdapter
-            // 
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.uxCastList);
@@ -251,68 +244,20 @@
             this.panel1.Size = new System.Drawing.Size(386, 213);
             this.panel1.TabIndex = 32;
             // 
-            // uxFirstName
+            // uxCastList
             // 
-            this.uxFirstName.Location = new System.Drawing.Point(47, 50);
-            this.uxFirstName.Name = "uxFirstName";
-            this.uxFirstName.Size = new System.Drawing.Size(78, 20);
-            this.uxFirstName.TabIndex = 33;
-            this.uxFirstName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.uxCastList.FormattingEnabled = true;
+            this.uxCastList.Location = new System.Drawing.Point(47, 130);
+            this.uxCastList.Name = "uxCastList";
+            this.uxCastList.Size = new System.Drawing.Size(320, 69);
+            this.uxCastList.TabIndex = 33;
             // 
-            // uxLastName
+            // uxRole
             // 
-            this.uxLastName.Location = new System.Drawing.Point(131, 50);
-            this.uxLastName.Name = "uxLastName";
-            this.uxLastName.Size = new System.Drawing.Size(78, 20);
-            this.uxLastName.TabIndex = 34;
-            // 
-            // uxGender
-            // 
-            this.uxGender.Location = new System.Drawing.Point(215, 50);
-            this.uxGender.Name = "uxGender";
-            this.uxGender.Size = new System.Drawing.Size(66, 20);
-            this.uxGender.TabIndex = 35;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(44, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "First Name:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(128, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Last Name:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(209, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "Gender:";
-            // 
-            // uxAddActor
-            // 
-            this.uxAddActor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxAddActor.Location = new System.Drawing.Point(102, 81);
-            this.uxAddActor.Name = "uxAddActor";
-            this.uxAddActor.Size = new System.Drawing.Size(203, 24);
-            this.uxAddActor.TabIndex = 33;
-            this.uxAddActor.Text = "Add Actor";
-            this.uxAddActor.UseVisualStyleBackColor = true;
-            this.uxAddActor.Click += new System.EventHandler(this.uxAddActor_Click);
+            this.uxRole.Location = new System.Drawing.Point(287, 50);
+            this.uxRole.Name = "uxRole";
+            this.uxRole.Size = new System.Drawing.Size(93, 20);
+            this.uxRole.TabIndex = 40;
             // 
             // label5
             // 
@@ -325,20 +270,68 @@
             this.label5.Text = "Role:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // uxRole
+            // uxAddActor
             // 
-            this.uxRole.Location = new System.Drawing.Point(287, 50);
-            this.uxRole.Name = "uxRole";
-            this.uxRole.Size = new System.Drawing.Size(93, 20);
-            this.uxRole.TabIndex = 40;
+            this.uxAddActor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxAddActor.Location = new System.Drawing.Point(102, 81);
+            this.uxAddActor.Name = "uxAddActor";
+            this.uxAddActor.Size = new System.Drawing.Size(203, 24);
+            this.uxAddActor.TabIndex = 33;
+            this.uxAddActor.Text = "Add Actor";
+            this.uxAddActor.UseVisualStyleBackColor = true;
+            this.uxAddActor.Click += new System.EventHandler(this.uxAddActor_Click);
             // 
-            // uxCastList
+            // label4
             // 
-            this.uxCastList.FormattingEnabled = true;
-            this.uxCastList.Location = new System.Drawing.Point(47, 130);
-            this.uxCastList.Name = "uxCastList";
-            this.uxCastList.Size = new System.Drawing.Size(320, 69);
-            this.uxCastList.TabIndex = 33;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(209, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Gender:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(128, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Last Name:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(44, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "First Name:";
+            // 
+            // uxGender
+            // 
+            this.uxGender.Location = new System.Drawing.Point(215, 50);
+            this.uxGender.Name = "uxGender";
+            this.uxGender.Size = new System.Drawing.Size(66, 20);
+            this.uxGender.TabIndex = 35;
+            // 
+            // uxLastName
+            // 
+            this.uxLastName.Location = new System.Drawing.Point(131, 50);
+            this.uxLastName.Name = "uxLastName";
+            this.uxLastName.Size = new System.Drawing.Size(78, 20);
+            this.uxLastName.TabIndex = 34;
+            // 
+            // uxFirstName
+            // 
+            this.uxFirstName.Location = new System.Drawing.Point(47, 50);
+            this.uxFirstName.Name = "uxFirstName";
+            this.uxFirstName.Size = new System.Drawing.Size(78, 20);
+            this.uxFirstName.TabIndex = 33;
+            this.uxFirstName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // uxDBInsertForm
             // 
