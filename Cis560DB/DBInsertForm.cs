@@ -164,10 +164,10 @@ namespace Cis560DB
                             }
                         }
                         //insert Genere
-                        using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.MovieGenre (DirectorId, MovieId) VALUES (@param1, @param2)", connection))
+                        using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.MovieGenre (GenreId, MovieId) VALUES (@param1, @param2)", connection))
                         {
-                            cmd.Parameters.Add("@param1", SqlDbType.Int).Value = movieId;
-                            cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetGenreId(connection);
+                            cmd.Parameters.Add("@param1", SqlDbType.Int).Value = GetGenreId(connection);
+                            cmd.Parameters.Add("@param2", SqlDbType.Int).Value = movieId;
                             cmd.CommandType = CommandType.Text;
                             cmd.ExecuteNonQuery();
                             cmd.Parameters.Clear();

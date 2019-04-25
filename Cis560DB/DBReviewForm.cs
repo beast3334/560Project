@@ -100,18 +100,24 @@ namespace Cis560DB
                     }
                 }
                 //Insert Review Information
-               
 
-                string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
-                using (SqlCommand cmd = new SqlCommand(query2, connection))
+                try
                 {
-                    cmd.Parameters.Add("@param1", SqlDbType.Int).Value = uxMovieGrid.SelectedCells[0].Value.ToString();
-                    cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetReviewerId(connection);
-                    cmd.Parameters.Add("@param3", SqlDbType.Int).Value = GetRating();
-                    cmd.Parameters.Add("@param4", SqlDbType.Int).Value = GetReviewCount(connection);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.ExecuteNonQuery();
+                    string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
+                    using (SqlCommand cmd = new SqlCommand(query2, connection))
+                    {
+                        cmd.Parameters.Add("@param1", SqlDbType.Int).Value = uxMovieGrid.SelectedCells[0].Value.ToString();
+                        cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetReviewerId(connection);
+                        cmd.Parameters.Add("@param3", SqlDbType.Int).Value = GetRating();
+                        cmd.Parameters.Add("@param4", SqlDbType.Int).Value = GetReviewCount(connection);
+                        cmd.CommandType = CommandType.Text;
+                        cmd.ExecuteNonQuery();
 
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("A review by that person already exists for this movie!");
                 }
                 
             }
