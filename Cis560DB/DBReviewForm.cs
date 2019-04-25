@@ -31,7 +31,7 @@ namespace Cis560DB
         SqlDataAdapter sqladapter;
 
 
-        public event enableButtonsReview SubmitEvent;
+        public event enableButtonsReview _enableButtons;
 
         public uxDBReviewForm()
         {
@@ -207,5 +207,11 @@ namespace Cis560DB
             DV.RowFilter = string.Format("MovieTitle LIKE '%{0}%'", uxSearchBox.Text);
             uxMovieGrid.DataSource = DV;
         }
+
+        private void ClosingForm(object sender, FormClosedEventArgs e)
+        {
+            _enableButtons();
+        }
+
     }
 }

@@ -184,7 +184,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 545);
-            this.ControlBox = false;
             this.Controls.Add(this.uxSearchByLabel);
             this.Controls.Add(this.uxSearchBox);
             this.Controls.Add(this.groupBox1);
@@ -192,8 +191,13 @@
             this.Controls.Add(this.uxSubmitButton);
             this.Controls.Add(this.uxFirstName);
             this.Controls.Add(this.uxMovieGrid);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(708, 584);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(708, 584);
             this.Name = "uxDBReviewForm";
             this.Text = "DBReviewForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.uxDBReviewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uxMovieGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);

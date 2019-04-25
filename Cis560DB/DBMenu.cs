@@ -35,7 +35,7 @@ namespace Cis560DB
         {
             if (uxInsertMoviewButton.Enabled == true) {
                 uxInsertForm = new uxDBInsertForm();
-                uxInsertForm.SubmitEvent  += new enableButtonsInsert(uxDBMenu_ButtonsEnabled);
+                uxInsertForm._enableButtons  += new enableButtonsInsert(uxDBMenu_ButtonsEnabled);
                 uxInsertForm.Show();
                 uxInsertMoviewButton.Enabled = false;
                 uxAddReviewButton.Enabled = false;
@@ -67,7 +67,7 @@ namespace Cis560DB
         {
             if (uxAddReviewButton.Enabled == true) {
                 uxReviewForm = new uxDBReviewForm();
-                uxReviewForm.SubmitEvent += new enableButtonsReview(uxDBMenu_ButtonsEnabled);
+                uxReviewForm._enableButtons += new enableButtonsReview(uxDBMenu_ButtonsEnabled);
                 uxReviewForm.Show();
                 uxAddReviewButton.Enabled = false;
                 uxInsertMoviewButton.Enabled = false;
