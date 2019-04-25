@@ -35,9 +35,11 @@ namespace Cis560DB
         {
             if (uxInsertMoviewButton.Enabled == true) {
                 uxInsertForm = new uxDBInsertForm();
-                uxInsertForm.SubmitEvent  += new enableInsertButton(uxDBInsertForm_ButtonEnabled);
+                uxInsertForm.SubmitEvent  += new enableButtonsInsert(uxDBMenu_ButtonsEnabled);
                 uxInsertForm.Show();
                 uxInsertMoviewButton.Enabled = false;
+                uxAddReviewButton.Enabled = false;
+                uxSearchButton.Enabled = false;
             }
         }
 
@@ -49,9 +51,11 @@ namespace Cis560DB
         {
             if (uxSearchButton.Enabled == true) {
                 uxSearchForm = new uxDBSearchForm();
-                uxSearchForm.SubmitEvent += new enableSearchButton(uxDBSearchForm_ButtonEnabled);
+                uxSearchForm._enableButtons += new enableButtonsSearch(uxDBMenu_ButtonsEnabled);
                 uxSearchForm.Show();
                 uxSearchButton.Enabled = false;
+                uxInsertMoviewButton.Enabled = false;
+                uxAddReviewButton.Enabled = false;
             }
         }
 
@@ -63,34 +67,23 @@ namespace Cis560DB
         {
             if (uxAddReviewButton.Enabled == true) {
                 uxReviewForm = new uxDBReviewForm();
-                uxReviewForm.SubmitEvent += new enableReviewButton(uxDBReviewForm_ButtonEnabled);
+                uxReviewForm.SubmitEvent += new enableButtonsReview(uxDBMenu_ButtonsEnabled);
                 uxReviewForm.Show();
                 uxAddReviewButton.Enabled = false;
+                uxInsertMoviewButton.Enabled = false;
+                uxSearchButton.Enabled = false;
             } 
         }
 
         /*
-         * Called by the delagate in the DBReviewForm Class. Allows the uxAddReviewButton 
-         * to unlock after the DBReviewForm is closed.
+         * Called by delagates in the DBSearchForm, DBInsertForm, and DBReviewFrom Classes. 
+         * Allows the buttons in the DBMenu to be unlocked after the one of the forms 
+         * is closed.
          */
-        void uxDBReviewForm_ButtonEnabled() {
-            uxAddReviewButton.Enabled = true; 
-        }
-
-        /*
-         * Called by the delagate in the DBInsertForm Class. Allows the uxInsertMovieButton
-         * to unlock after the DBInsertForm is closed.
-         */
-        void uxDBInsertForm_ButtonEnabled() {
-            uxInsertMoviewButton.Enabled = true;
-        }
-
-        /*
-         * Called by the delagate in the DBSearchForm Class. Allows the uxSearchButton
-         * to unlock after the DBSearchForm is closed.
-         */
-        void uxDBSearchForm_ButtonEnabled()
+        void uxDBMenu_ButtonsEnabled()
         {
+            uxInsertMoviewButton.Enabled = true;
+            uxAddReviewButton.Enabled = true;
             uxSearchButton.Enabled = true;
         }
     }

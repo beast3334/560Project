@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
-    public delegate void enableInsertButton();
+    public delegate void enableButtonsInsert();
 
     public partial class uxDBInsertForm : Form
     {
@@ -23,7 +23,7 @@ namespace Cis560DB
         private List<string> castList = new List<string>();
         private BindingList<string> bs = new BindingList<string>();
 
-        public enableInsertButton SubmitEvent;
+        public enableButtonsInsert SubmitEvent;
 
         public uxDBInsertForm()
         {

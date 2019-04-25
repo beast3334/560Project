@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
-    public delegate void enableReviewButton();
+    public delegate void enableButtonsReview();
 
     public partial class uxDBReviewForm : Form
     {
@@ -31,7 +31,7 @@ namespace Cis560DB
         SqlDataAdapter sqladapter;
 
 
-        public event enableReviewButton SubmitEvent;
+        public event enableButtonsReview SubmitEvent;
 
         public uxDBReviewForm()
         {

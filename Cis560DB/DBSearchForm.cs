@@ -11,17 +11,16 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
-    public delegate void enableSearchButton();
+    // Delegate 
+    public delegate void enableButtonsSearch();
 
     public partial class uxDBSearchForm : Form
     {
-        public event enableSearchButton SubmitEvent;
+        //Delegate
+        public event enableButtonsSearch _enableButtons;
 
-        public uxDBSearchForm()
-        {
-            InitializeComponent();
 
-        }
+        //Sql commands
         SqlConnection sqlconnection;
         SqlCommand sqlcommand;
         string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
@@ -31,36 +30,33 @@ namespace Cis560DB
         DataTable datatable;
         SqlDataAdapter sqladapter;
 
-        private void uxSearchButton_Click(object sender, EventArgs e)
+
+
+        /*
+         * Initializes the DBSearch Form
+         */
+        public uxDBSearchForm()
         {
-            SubmitEvent();
-            Close();
+            InitializeComponent();
         }
 
+        /*
+         * Loads data from sql tables into the DataGridView uxSearchGrid after the DBSearchForm
+         * is load by the user. 
+         */
         private void uxDBSearchForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cis560_team24DataSet3.Movie' table. You can move, or remove it, as needed.
+            // This line of code loads data into the 'cis560_team24DataSet3.Movie' table. You can move, or remove it, as needed.
             this.movieTableAdapter.Fill(this.cis560_team24DataSet3.Movie);
-            // TODO: This line of code loads data into the 'cis560_team24DataSet2.Director' table. You can move, or remove it, as needed.
+            // This line of code loads data into the 'cis560_team24DataSet2.Director' table. You can move, or remove it, as needed.
             this.directorTableAdapter.Fill(this.cis560_team24DataSet2.Director);
-            // TODO: This line of code loads data into the 'cis560_team24DataSet1.Movie' table. You can move, or remove it, as needed.
+            // This line of code loads data into the 'cis560_team24DataSet1.Movie' table. You can move, or remove it, as needed.
             UpdateDataBox();
-
         }
 
-        private void movieIdToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
+        /*
+         * Used to help filter data accordingly in the uxSearchGrid per user's request. 
+         */
         private void uxTitleBox_TextChanged(object sender, EventArgs e)
         {
             DataView DV = new DataView(datatable);
@@ -68,6 +64,9 @@ namespace Cis560DB
             uxSearchGrid.DataSource = DV;
         }
 
+        /*
+         * 
+         */
         private void uxMoreInfoButton_Click(object sender, EventArgs e)
         {
             ExpandedInfo ei = new ExpandedInfo();
@@ -75,9 +74,11 @@ namespace Cis560DB
             ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
             ei.Query2 = "Select R.ReviewerId, MR.ReviewerName, R.ReviewerRating FROM MovieInfo.Rating R INNER JOIN MovieInfo.Reviewer MR ON MR.ReviewerId = R.ReviewerId WHERE R.MovieId =  " + uxSearchGrid.SelectedCells[0].Value.ToString();
             ei.Show();
-
         }
 
+        /*
+         * Removes a selected movie in the uxSearchGrid from the movie database.  
+         */
         private void uxDeleteButton_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Are you sure you want to delete? This cannot be undone.","Confirm Delete", MessageBoxButtons.YesNo);
@@ -113,9 +114,14 @@ namespace Cis560DB
             uxSearchGrid.DataSource = datatable;
         }
 
-        private void uxSearchByLabel_Click(object sender, EventArgs e)
-        {
 
+        /*
+         * When the form closes, uses the delegate to unlock the uxSearchButton in the 
+         * DBMenu Form
+         */
+        private void ClosingForm(object sender, FormClosedEventArgs e)
+        {
+            _enableButtons();
         }
     }
 }

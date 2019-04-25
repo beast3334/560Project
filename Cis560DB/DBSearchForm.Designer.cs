@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.uxSearchBox = new System.Windows.Forms.TextBox();
-            this.uxSearchByLabel = new System.Windows.Forms.Label();
+            this.uxSearchLabel = new System.Windows.Forms.Label();
             this.cis560team24DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.movieBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -64,16 +64,15 @@
             this.uxSearchBox.TabIndex = 2;
             this.uxSearchBox.TextChanged += new System.EventHandler(this.uxTitleBox_TextChanged);
             // 
-            // uxSearchByLabel
+            // uxSearchLabel
             // 
-            this.uxSearchByLabel.AutoSize = true;
-            this.uxSearchByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxSearchByLabel.Location = new System.Drawing.Point(273, 21);
-            this.uxSearchByLabel.Name = "uxSearchByLabel";
-            this.uxSearchByLabel.Size = new System.Drawing.Size(64, 20);
-            this.uxSearchByLabel.TabIndex = 21;
-            this.uxSearchByLabel.Text = "Search:";
-            this.uxSearchByLabel.Click += new System.EventHandler(this.uxSearchByLabel_Click);
+            this.uxSearchLabel.AutoSize = true;
+            this.uxSearchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxSearchLabel.Location = new System.Drawing.Point(273, 21);
+            this.uxSearchLabel.Name = "uxSearchLabel";
+            this.uxSearchLabel.Size = new System.Drawing.Size(64, 20);
+            this.uxSearchLabel.TabIndex = 21;
+            this.uxSearchLabel.Text = "Search:";
             // 
             // movieBindingSource
             // 
@@ -157,14 +156,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 397);
-            this.ControlBox = false;
             this.Controls.Add(this.uxSearchGrid);
             this.Controls.Add(this.uxDeleteButton);
             this.Controls.Add(this.uxMoreInfoButton);
-            this.Controls.Add(this.uxSearchByLabel);
+            this.Controls.Add(this.uxSearchLabel);
             this.Controls.Add(this.uxSearchBox);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(892, 436);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(892, 436);
             this.Name = "uxDBSearchForm";
-            this.Text = "Rating";
+            this.Text = "Search";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.uxDBSearchForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
@@ -182,7 +185,7 @@
 
         #endregion
         private System.Windows.Forms.TextBox uxSearchBox;
-        private System.Windows.Forms.Label uxSearchByLabel;
+        private System.Windows.Forms.Label uxSearchLabel;
         private System.Windows.Forms.BindingSource cis560team24DataSetBindingSource;
         private System.Windows.Forms.BindingSource movieBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn movieIdDataGridViewTextBoxColumn;
