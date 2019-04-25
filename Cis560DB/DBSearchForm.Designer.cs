@@ -34,6 +34,11 @@
             this.cis560team24DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.uxSearchGrid = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movieBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cis560_team24DataSet3 = new Cis560DB.cis560_team24DataSet3();
             this.cis560_team24DataSet = new Cis560DB.cis560_team24DataSet();
@@ -43,11 +48,7 @@
             this.directorTableAdapter = new Cis560DB.cis560_team24DataSet2TableAdapters.DirectorTableAdapter();
             this.movieTableAdapter = new Cis560DB.cis560_team24DataSet3TableAdapters.MovieTableAdapter();
             this.uxMoreInfoButton = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uxDeleteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cis560team24DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxSearchGrid)).BeginInit();
@@ -103,6 +104,41 @@
             this.uxSearchGrid.Size = new System.Drawing.Size(852, 284);
             this.uxSearchGrid.TabIndex = 39;
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MovieId";
+            this.Column1.HeaderText = "MovieId";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "MovieTitle";
+            this.dataGridViewTextBoxColumn2.HeaderText = "MovieTitle";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "ReleaseDate";
+            this.dataGridViewTextBoxColumn3.HeaderText = "ReleaseDate";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Language";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Language";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "AllTimeBoxOffice";
+            this.dataGridViewTextBoxColumn5.HeaderText = "AllTimeBoxOffice";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
             // movieBindingSource1
             // 
             this.movieBindingSource1.DataMember = "Movie";
@@ -151,40 +187,15 @@
             this.uxMoreInfoButton.UseVisualStyleBackColor = true;
             this.uxMoreInfoButton.Click += new System.EventHandler(this.uxMoreInfoButton_Click);
             // 
-            // Column1
+            // uxDeleteButton
             // 
-            this.Column1.DataPropertyName = "MovieId";
-            this.Column1.HeaderText = "MovieId";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MovieTitle";
-            this.dataGridViewTextBoxColumn2.HeaderText = "MovieTitle";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "ReleaseDate";
-            this.dataGridViewTextBoxColumn3.HeaderText = "ReleaseDate";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Language";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Language";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "AllTimeBoxOffice";
-            this.dataGridViewTextBoxColumn5.HeaderText = "AllTimeBoxOffice";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.uxDeleteButton.Location = new System.Drawing.Point(703, 352);
+            this.uxDeleteButton.Name = "uxDeleteButton";
+            this.uxDeleteButton.Size = new System.Drawing.Size(161, 32);
+            this.uxDeleteButton.TabIndex = 41;
+            this.uxDeleteButton.Text = "Delete";
+            this.uxDeleteButton.UseVisualStyleBackColor = true;
+            this.uxDeleteButton.Click += new System.EventHandler(this.uxDeleteButton_Click);
             // 
             // uxDBSearchForm
             // 
@@ -193,6 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 397);
             this.ControlBox = false;
+            this.Controls.Add(this.uxDeleteButton);
             this.Controls.Add(this.uxMoreInfoButton);
             this.Controls.Add(this.uxSearchGrid);
             this.Controls.Add(this.uxSearchByLabel);
@@ -239,5 +251,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Button uxDeleteButton;
     }
 }
