@@ -163,6 +163,16 @@ namespace Cis560DB
                                 cmd.Parameters.Clear();
                             }
                         }
+                        //insert Genere
+                        using (SqlCommand cmd = new SqlCommand("INSERT INTO MovieInfo.MovieGenre (DirectorId, MovieId) VALUES (@param1, @param2)", connection))
+                        {
+                            cmd.Parameters.Add("@param1", SqlDbType.Int).Value = movieId;
+                            cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetGenreId(connection);
+                            cmd.CommandType = CommandType.Text;
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Clear();
+                        }
+
                     }
                 } catch (System.Data.SqlClient.SqlException) {
                     MessageBox.Show("Movie already exist in the database");
@@ -302,6 +312,20 @@ namespace Cis560DB
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@FirstName", pieces[0]));
             cmd.Parameters.Add(new SqlParameter("@LastName", pieces[1]));
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    return Convert.ToInt32(rdr[0]);
+                }
+            }
+            return 0;
+        }
+        private int GetGenreId(SqlConnection connection)
+        {
+            SqlCommand cmd = new SqlCommand("MovieInfo.GET_GENRE_ID", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 32).Value = uxGenreBox.Text;
             using (SqlDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())

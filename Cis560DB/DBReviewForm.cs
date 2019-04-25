@@ -74,7 +74,7 @@ namespace Cis560DB
 
         private void uxSubmitButton_Click(object sender, EventArgs e)
         {
-            if(!(uxOneStar.Enabled || uxTwoStar.Enabled || uxThreeStar.Enabled || uxFourStar.Enabled || uxFiveStar.Enabled))
+            if(!(uxOneStar.Checked || uxTwoStar.Checked || uxThreeStar.Checked || uxFourStar.Checked || uxFiveStar.Checked))
             {
                 MessageBox.Show("You must select a rating");
                 return;
@@ -91,6 +91,7 @@ namespace Cis560DB
                     string query = "INSERT INTO MovieInfo.Reviewer (ReviewerName) VALUES (@param1)";
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
+                    
                         cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 128).Value = uxFirstName.Text;
                         
                         cmd.CommandType = CommandType.Text;
@@ -99,6 +100,8 @@ namespace Cis560DB
                     }
                 }
                 //Insert Review Information
+               
+
                 string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
                 using (SqlCommand cmd = new SqlCommand(query2, connection))
                 {
@@ -110,7 +113,9 @@ namespace Cis560DB
                     cmd.ExecuteNonQuery();
 
                 }
+                
             }
+            MessageBox.Show("Succesfully added review!");
         }
         private bool ReviewerExists(SqlConnection connection)
         {
@@ -150,23 +155,23 @@ namespace Cis560DB
         }
         private int GetRating()
         {
-            if(uxOneStar.Enabled)
+            if(uxOneStar.Checked)
             {
                 return 1;
             }
-            else if(uxTwoStar.Enabled)
+            else if(uxTwoStar.Checked)
             {
                 return 2;
             }
-            else if(uxThreeStar.Enabled)
+            else if(uxThreeStar.Checked)
             {
                 return 3;
             }
-            else if(uxFourStar.Enabled)
+            else if(uxFourStar.Checked)
             {
                 return 4;
             }
-            else if(uxFiveStar.Enabled)
+            else if(uxFiveStar.Checked)
             {
                 return 5;
             }
@@ -188,6 +193,13 @@ namespace Cis560DB
                 }
             }
             return 0;
+        }
+
+        private void uxSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            DataView DV = new DataView(datatable);
+            DV.RowFilter = string.Format("MovieTitle LIKE '%{0}%'", uxSearchBox.Text);
+            uxMovieGrid.DataSource = DV;
         }
     }
 }

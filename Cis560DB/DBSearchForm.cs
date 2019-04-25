@@ -73,7 +73,7 @@ namespace Cis560DB
             ExpandedInfo ei = new ExpandedInfo();
             string s = uxSearchGrid.SelectedCells[0].Value.ToString();
             ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
-            ei.Query2 = "Select * FROM MovieInfo.Rating";
+            ei.Query2 = "Select R.ReviewerId, MR.ReviewerName, R.ReviewerRating FROM MovieInfo.Rating R INNER JOIN MovieInfo.Reviewer MR ON MR.ReviewerId = R.ReviewerId WHERE R.MovieId =  " + uxSearchGrid.SelectedCells[0].Value.ToString();
             ei.Show();
 
         }
@@ -87,7 +87,7 @@ namespace Cis560DB
                 {
                     string id = uxSearchGrid.SelectedCells[0].Value.ToString();
                     connection.Open();
-                    string query = "DELETE FROM MovieInfo.Movie WHERE Movieid = " + id;
+                    string query = "DELETE FROM MovieInfo.Movie WHERE Movieid = " + id + " DELETE FROM MovieInfo.[CAST} WHERE Movieid = " + id;
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
                         cmd.CommandType = CommandType.Text;
@@ -104,13 +104,18 @@ namespace Cis560DB
         private void UpdateDataBox()
         {
             sqlconnection = new SqlConnection(ConnectionString);
-            Query = "Select * FROM MovieInfo.Movie";
+            Query = "Select M.MovieId, M.MovieTitle, STRING_AGG(G.GenreTitle, ',') AS Genres, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice FROM MovieInfo.Movie M INNER JOIN MovieInfo.MovieGenre MG ON MG.MovieId = M.MovieId INNER JOIN MovieInfo.Genre G ON G.GenreId = MG.GenreId Group By M.MovieId, M.MovieTitle, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice";
             sqlcommand = new SqlCommand(Query, sqlconnection);
             sqladapter = new SqlDataAdapter();
             datatable = new DataTable();
             sqladapter.SelectCommand = sqlcommand;
             sqladapter.Fill(datatable);
             uxSearchGrid.DataSource = datatable;
+        }
+
+        private void uxSearchByLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
