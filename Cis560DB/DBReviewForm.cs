@@ -60,27 +60,6 @@ namespace Cis560DB
 
         }
 
-        
-
-        private void uxSubmit_Click(object sender, EventArgs e)
-        {          
-            if (_rating > 0 && _movieTitle != null && _review != null){
-                /*
-                //Code for Query
-                string query = ""; // need to add query
-                SqlCommand Command = new SqlCommand(query, db.Connection );
-                Command.Parameters.Add("@Movie",_movieTitle);
-                Command.Parameters.Add("@Rating", _rating);
-                Command.Parameters.Add("@Review", _review);
-                Command.ExecuteNonQuery();
-                */
-                SubmitEvent();
-                Close();
-            } else {
-                MessageBox.Show("Please fill out all fields.");
-            }
-        }
-
         private void uxDBReviewForm_Load(object sender, EventArgs e)
         {
             sqlconnection = new SqlConnection(ConnectionString);
@@ -91,6 +70,124 @@ namespace Cis560DB
             sqladapter.SelectCommand = sqlcommand;
             sqladapter.Fill(datatable);
             uxMovieGrid.DataSource = datatable;
+        }
+
+        private void uxSubmitButton_Click(object sender, EventArgs e)
+        {
+            if(!(uxOneStar.Enabled || uxTwoStar.Enabled || uxThreeStar.Enabled || uxFourStar.Enabled || uxFiveStar.Enabled))
+            {
+                MessageBox.Show("You must select a rating");
+                return;
+            }
+            string s = uxMovieGrid.SelectedCells[0].Value.ToString();
+            using (SqlConnection connection = new SqlConnection("Data Source = mssql.cs.ksu.edu; Initial Catalog = cis560_team24; Integrated Security = True"))
+            {
+                connection.Open();
+                if (!ReviewerExists(connection))
+                {
+
+
+                    //Insert MovieInfo.Reviewer information
+                    string query = "INSERT INTO MovieInfo.Reviewer (ReviewerName) VALUES (@param1)";
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 128).Value = uxFirstName.Text;
+                        
+                        cmd.CommandType = CommandType.Text;
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                    }
+                }
+                //Insert Review Information
+                string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
+                using (SqlCommand cmd = new SqlCommand(query2, connection))
+                {
+                    cmd.Parameters.Add("@param1", SqlDbType.Int).Value = uxMovieGrid.SelectedCells[0].Value.ToString();
+                    cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetReviewerId(connection);
+                    cmd.Parameters.Add("@param3", SqlDbType.Int).Value = GetRating();
+                    cmd.Parameters.Add("@param4", SqlDbType.Int).Value = GetReviewCount(connection);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+        private bool ReviewerExists(SqlConnection connection)
+        {
+            SqlCommand cmd = new SqlCommand("MovieInfo.CHECK_IF_REVIEWER_EXISTS", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@Name", uxFirstName.Text));
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    int test = Convert.ToInt32(rdr[0]);
+                    if (Convert.ToInt32(rdr[0]) == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        private int GetReviewerId(SqlConnection connection)
+        {     
+            SqlCommand cmd = new SqlCommand("MovieInfo.GET_REVIEWER_ID", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@Name", uxFirstName.Text));
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    return Convert.ToInt32(rdr[0]);
+                }
+            }
+            return 0;
+        }
+        private int GetRating()
+        {
+            if(uxOneStar.Enabled)
+            {
+                return 1;
+            }
+            else if(uxTwoStar.Enabled)
+            {
+                return 2;
+            }
+            else if(uxThreeStar.Enabled)
+            {
+                return 3;
+            }
+            else if(uxFourStar.Enabled)
+            {
+                return 4;
+            }
+            else if(uxFiveStar.Enabled)
+            {
+                return 5;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        private int GetReviewCount(SqlConnection connection)
+        {
+            SqlCommand cmd = new SqlCommand("MovieInfo.GET_REVIEW_COUNT", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@MOVIEID", uxMovieGrid.SelectedCells[0].Value.ToString()));
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    return Convert.ToInt32(rdr[0]) + 1;
+                }
+            }
+            return 0;
         }
     }
 }
