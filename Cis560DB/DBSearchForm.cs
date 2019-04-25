@@ -11,24 +11,27 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
-    // Delegate 
+    /// <summary>
+    /// Delegate used to unlock all button on the DBMenu Form from the DBSearchForm
+    /// </summary>
     public delegate void enableButtonsSearch();
 
     public partial class uxDBSearchForm : Form
     {
-        //Delegate
+        
         public event enableButtonsSearch _enableButtons;
-
-        //Sql commands
+        // Represents Connection to the SQL Server database
         SqlConnection sqlconnection;
+        // Statement or stored procedure to be executed against a SQL Server database
         SqlCommand sqlcommand;
-        DataSet dataset;
+        // Table representing data
         DataTable datatable;
+        // Represents a set of data commands and a database connection that are used to fill a dataSet and update the database.
         SqlDataAdapter sqladapter;
 
-        // String used to establsh connection to sql database
+        // String which contains the prameters to establsh connection to sql database
         string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
-
+        // String used to write a sql query 
         string Query;
 
         /// <summary>
@@ -68,17 +71,21 @@ namespace Cis560DB
         /// </summary>
         private void uxMoreInfoButton_Click(object sender, EventArgs e)
         {
-            ExpandedInfo ei = new ExpandedInfo();
-            string s = uxSearchGrid.SelectedCells[0].Value.ToString();
-            ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
-            ei.Query2 = "Select R.ReviewerId, MR.ReviewerName, R.ReviewerRating FROM MovieInfo.Rating R INNER JOIN MovieInfo.Reviewer MR ON MR.ReviewerId = R.ReviewerId WHERE R.MovieId =  " + uxSearchGrid.SelectedCells[0].Value.ToString();
-            ei.Query3 = "SELECT FirstName, LastName From MovieInfo.Director D INNER JOIN MovieInfo.MovieDirector MD ON MD.DirectorId = D.DirectorId WHERE MD.MovieId = " + uxSearchGrid.SelectedCells[0].Value.ToString();
-            ei.Show();
+            try {
+                ExpandedInfo ei = new ExpandedInfo();
+                string s = uxSearchGrid.SelectedCells[0].Value.ToString();
+                ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
+                ei.Query2 = "Select R.ReviewerId, MR.ReviewerName, R.ReviewerRating FROM MovieInfo.Rating R INNER JOIN MovieInfo.Reviewer MR ON MR.ReviewerId = R.ReviewerId WHERE R.MovieId =  " + uxSearchGrid.SelectedCells[0].Value.ToString();
+                ei.Query3 = "SELECT FirstName, LastName From MovieInfo.Director D INNER JOIN MovieInfo.MovieDirector MD ON MD.DirectorId = D.DirectorId WHERE MD.MovieId = " + uxSearchGrid.SelectedCells[0].Value.ToString();
+                ei.Show();
+            } catch (ArgumentOutOfRangeException) {
+                MessageBox.Show("No movie was selected!\nPlease select a movie from the table before continuing.");
+            }
         }
 
-        /*
-         * Removes a selected movie in the uxSearchGrid from the movie database.  
-         */
+        /// <summary>
+        /// Removes a selected movie in the uxSearchGrid from the movie database.
+        /// </summary>
         private void uxDeleteButton_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Are you sure you want to delete? This cannot be undone.","Confirm Delete", MessageBoxButtons.YesNo);
@@ -103,6 +110,9 @@ namespace Cis560DB
             }
         }
 
+        /// <summary>
+        /// Updates the data displayed in the uxSearchGrid
+        /// </summary>
         private void UpdateDataBox()
         {
             sqlconnection = new SqlConnection(ConnectionString);
@@ -115,11 +125,9 @@ namespace Cis560DB
             uxSearchGrid.DataSource = datatable;
         }
 
-
-        /*
-         * When the form closes, uses the delegate to unlock the buttons in the 
-         * DBMenu Form. 
-         */
+        /// <summary>
+        /// When the form closes, uses the delegate to unlock the buttons in the DBMenu Form.
+        /// </summary>
         private void ClosingForm(object sender, FormClosedEventArgs e)
         {
             _enableButtons();
