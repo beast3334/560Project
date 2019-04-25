@@ -35,7 +35,7 @@ namespace Cis560DB
         string Query;
 
         /// <summary>
-        /// Initializes the DBSearch Form
+        /// Initializes the DBSearchForm
         /// </summary>
         public uxDBSearchForm()
         {

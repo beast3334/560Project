@@ -19,18 +19,18 @@ namespace Cis560DB
         // uxDBReviewForm object, represents the review form of the database. 
         public uxDBReviewForm uxReviewForm;
 
-        /*
-         * Initializes the DBMenu Form
-         */
+
+        /// <Summary>
+        /// Initializes the DBMenu Form
+        /// </Summary>
         public uxDBMenu()
         {
             InitializeComponent();
         }
 
-        /*
-         * Creates an instance of the DBInsertForm. The form allows the user to add a movie 
-         * to the Movie Database.
-         */
+        /// <summary>
+        /// Creates an instance of the DBInsertForm. The form allows the user to add a movie to the Movie Database.
+        /// </summary>
         private void uxInsertMovie_Click(object sender, EventArgs e)
         {
             if (uxInsertMoviewButton.Enabled == true) {
@@ -43,10 +43,9 @@ namespace Cis560DB
             }
         }
 
-        /*
-        * Creates an instance of the DBSearchForm. The form allows the user to search for 
-        * a movie within the database.
-        */
+        /// <summary>
+        ///  Creates an instance of the DBSearchForm. The form allows the user to search for a movie within the database.
+        /// </summary>
         private void uxSearch_Click(object sender, EventArgs e)
         {
             if (uxSearchButton.Enabled == true) {
@@ -59,10 +58,12 @@ namespace Cis560DB
             }
         }
 
-        /*
-         * Creates an instance of the DBReviewForm. The form allows the user to rate and add 
-         * a review of the movie to the database.
-         */
+        /// <summary>
+        /// Creates an instance of the DBReviewForm. The form allows the user to rate and add a review of 
+        /// the movie to the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uxAddReview_Click(object sender, EventArgs e)
         {
             if (uxAddReviewButton.Enabled == true) {
@@ -72,14 +73,13 @@ namespace Cis560DB
                 uxAddReviewButton.Enabled = false;
                 uxInsertMoviewButton.Enabled = false;
                 uxSearchButton.Enabled = false;
-            } 
+            }
         }
 
-        /*
-         * Called by delagates in the DBSearchForm, DBInsertForm, and DBReviewFrom Classes. 
-         * Allows the buttons in the DBMenu to be unlocked after the one of the forms 
-         * is closed.
-         */
+        /// <summary>
+        /// Called by delagates in the DBSearchForm, DBInsertForm, and DBReviewFrom Classes. Allows the buttons 
+        /// in the DBMenu to be unlocked after the one of the forms is closed.
+        /// </summary>
         void uxDBMenu_ButtonsEnabled()
         {
             uxInsertMoviewButton.Enabled = true;

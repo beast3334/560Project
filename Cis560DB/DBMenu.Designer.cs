@@ -39,7 +39,7 @@
             this.uxSearchButton.Name = "uxSearchButton";
             this.uxSearchButton.Size = new System.Drawing.Size(260, 50);
             this.uxSearchButton.TabIndex = 0;
-            this.uxSearchButton.Text = "Search Database";
+            this.uxSearchButton.Text = "Search for Movies";
             this.uxSearchButton.UseVisualStyleBackColor = true;
             this.uxSearchButton.Click += new System.EventHandler(this.uxSearch_Click);
             // 

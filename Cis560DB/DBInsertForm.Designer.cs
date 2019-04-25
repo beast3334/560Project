@@ -329,7 +329,6 @@
             this.uxFirstName.Name = "uxFirstName";
             this.uxFirstName.Size = new System.Drawing.Size(78, 20);
             this.uxFirstName.TabIndex = 33;
-            this.uxFirstName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // uxDBInsertForm
             // 
@@ -358,7 +357,6 @@
             this.Name = "uxDBInsertForm";
             this.Text = "DBInsertForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
-            this.Load += new System.EventHandler(this.uxDBInsertForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

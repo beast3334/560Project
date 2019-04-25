@@ -11,41 +11,67 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
+    //Delegate used to unlock all button on the DBMenu Form from the DBInsertForm
     public delegate void enableButtonsInsert();
 
+    /// <summary>
+    /// uxDBInsertForm Class
+    /// </summary>
     public partial class uxDBInsertForm : Form
     {
+        public enableButtonsInsert _enableButtons;
+        // Title of movie being added to database
         private string _movieTitle;
+        // Director of movie being added to database
         private string _director;
+        // Genre of movie being added to database
         private string _genre;
+        // Revenue of movie being added to database
         private double _revenue;
+        // Release Date of movie being added to database
         private DateTime _releaseDate;
+        // Cast list of movie being added to database(Optional)
         private List<string> castList = new List<string>();
+        
+        // 
         private BindingList<string> bs = new BindingList<string>();
 
-        public enableButtonsInsert _enableButtons;
-
+        /// <summary>
+        /// Initializes the DBInsertForm
+        /// </summary>
         public uxDBInsertForm()
         {
             InitializeComponent();
             uxCastList.DataSource = bs;
         }
 
+        /// <summary>
+        /// Updates _movieTitle when uxTitleBox is changed
+        /// </summary>
         private void uxTitleBox_TextChanged(object sender, EventArgs e)
         {
             _movieTitle = uxTitleBox.Text;
         }
 
+        /// <summary>
+        /// Updates _director when uxDirectorBox is changed
+        /// </summary>
         private void uxDirectorBox_TextChanged(object sender, EventArgs e)
         {
             _director = uxDirectorBox.Text;
         }
 
+        /// <summary>
+        /// Updates _genre when uxGenreBox is changed
+        /// </summary>
         private void uxGenreBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _genre = uxGenreBox.Text;
         }
 
+        /// <summary>
+        /// Updates _revenue when uxProfitBox is changed
+        /// </summary>
         private void uxProfitBox_TextChanged(object sender, EventArgs e)
         {
             try { 
@@ -56,11 +82,17 @@ namespace Cis560DB
             }
         }
 
+        /// <summary>
+        /// Updates _releaseDate when uxDatePicker is changed
+        /// </summary>
         private void uxDatePicker_ValueChanged(object sender, EventArgs e)
         {
             _releaseDate = uxDatePicker.Value.Date;
         }
 
+        /// <summary>
+        ///  Adds a movie to the database.
+        /// </summary>
         private void uxAddMovieButton_Click(object sender, EventArgs e)
         {         
             int movieId;
@@ -172,7 +204,6 @@ namespace Cis560DB
                             cmd.ExecuteNonQuery();
                             cmd.Parameters.Clear();
                         }
-
                     }
                 } catch (System.Data.SqlClient.SqlException) {
                     MessageBox.Show("Movie already exist in the database");
@@ -186,44 +217,31 @@ namespace Cis560DB
                 }
                 if (errorFree) {
                     MessageBox.Show("Movie Added!");
+                    Close();
                 }
-                Close();
             } else {
                 MessageBox.Show("Please fill out all required (*) fields.");
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void uxDBInsertForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'cis560_team24DataSet.Actor' table. You can move, or remove it, as needed.
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Adds an actor to the cast list of a movie to be added to the database
+        /// </summary>
         private void uxAddActor_Click(object sender, EventArgs e)
         {
             bs.Add(uxFirstName.Text + "|" + uxLastName.Text + "|" + uxGender.Text + "|" + uxRole.Text);
-            
+            uxFirstName.Clear();
+            uxLastName.Clear();
+            uxGender.Clear();
+            uxRole.Clear();
         }
+
+        /// <summary>
+        ///  Assigns an id value to an movie, director, or actor. Used when adding a new movie to the database.
+        /// </summary>
+        /// <param name="query">String that stores the procedure for a query. </param>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database. </param>
+        /// <returns> Return an int called key which represents an id for either an movie, director, or actor. </returns>
         private int GetNextKey(string query, SqlConnection connection)
         {
             int key = 0;
@@ -236,9 +254,15 @@ namespace Cis560DB
                 }
                 key++;
                 return key;
-
             }
         }
+
+        /// <summary>
+        /// Checks if a given actor exists in a database.
+        /// </summary>
+        /// <param name="actor">String which represents the name of an actor. </param>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns a boolean value which tells if the actor already exist. </returns>
         private bool CheckIfActorExists(string actor, SqlConnection connection)
         {
             string[] pieces = actor.Split('|');
@@ -261,9 +285,15 @@ namespace Cis560DB
                     }
                 }
             }
-            return false;
-            
+            return false; 
         }
+
+        /// <summary>
+        /// Retrieves the actorId of an given actor from a database.
+        /// </summary>
+        /// <param name="actor">String which represents the name of an actor. </param>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database. </param>
+        /// <returns>Returns an int value which represents the actorId of an actor. </returns>
         private int GetActorId(string actor, SqlConnection connection)
         {
             string[] pieces = actor.Split('|');
@@ -280,6 +310,12 @@ namespace Cis560DB
             }
             return 0;
         }
+
+        /// <summary>
+        /// Checks if a given director exists in a database.
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns a boolean value which tells if the director already exist. </returns>
         private bool CheckifDirectorExists(SqlConnection connection)
         {
             string[] pieces = uxDirectorBox.Text.Split();
@@ -304,6 +340,12 @@ namespace Cis560DB
             }
             return false;
         }
+
+        /// <summary>
+        /// Retrieves the directorId of an given director from a database.
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns an int value which represents the actorId of an actor.</returns>
         private int GetDirectorId(SqlConnection connection)
         {
             string[] pieces = uxDirectorBox.Text.Split();
@@ -320,6 +362,12 @@ namespace Cis560DB
             }
             return 0;
         }
+
+        /// <summary>
+        /// Retrieves the gerneId of an given movie from a database
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns an int value which represents the genre of a movie.</returns>
         private int GetGenreId(SqlConnection connection)
         {
             SqlCommand cmd = new SqlCommand("MovieInfo.GET_GENRE_ID", connection);
@@ -335,10 +383,12 @@ namespace Cis560DB
             return 0;
         }
 
+        /// <summary>
+        /// When the form closes, uses the delegate to unlock the buttons in the DBMenu Form.
+        /// </summary>
         private void ClosingForm(object sender, FormClosedEventArgs e)
         {
             _enableButtons();
         }
-
     }
 }
