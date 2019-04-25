@@ -44,14 +44,7 @@ namespace Cis560DB
             // TODO: This line of code loads data into the 'cis560_team24DataSet2.Director' table. You can move, or remove it, as needed.
             this.directorTableAdapter.Fill(this.cis560_team24DataSet2.Director);
             // TODO: This line of code loads data into the 'cis560_team24DataSet1.Movie' table. You can move, or remove it, as needed.
-            sqlconnection = new SqlConnection(ConnectionString);
-            Query = "Select MovieTitle, ReleaseDate, [Language], AllTimeBoxOffice FROM MovieInfo.Movie";
-            sqlcommand = new SqlCommand(Query, sqlconnection);
-            sqladapter = new SqlDataAdapter();
-            datatable = new DataTable();
-            sqladapter.SelectCommand = sqlcommand;
-            sqladapter.Fill(datatable);
-            uxSearchGrid.DataSource = datatable;
+            UpdateDataBox();
 
         }
 
@@ -59,7 +52,7 @@ namespace Cis560DB
         {
             try
             {
-              
+
             }
             catch (System.Exception ex)
             {
@@ -73,6 +66,51 @@ namespace Cis560DB
             DataView DV = new DataView(datatable);
             DV.RowFilter = string.Format("MovieTitle LIKE '%{0}%'", uxSearchBox.Text);
             uxSearchGrid.DataSource = DV;
+        }
+
+        private void uxMoreInfoButton_Click(object sender, EventArgs e)
+        {
+            ExpandedInfo ei = new ExpandedInfo();
+            string s = uxSearchGrid.SelectedCells[0].Value.ToString();
+            ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
+            ei.Query2 = "Select * FROM MovieInfo.Rating";
+            ei.Show();
+
+        }
+
+        private void uxDeleteButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to delete? This cannot be undone.","Confirm Delete", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection connection = new SqlConnection("Data Source = mssql.cs.ksu.edu; Initial Catalog = cis560_team24; Integrated Security = True"))
+                {
+                    string id = uxSearchGrid.SelectedCells[0].Value.ToString();
+                    connection.Open();
+                    string query = "DELETE FROM MovieInfo.Movie WHERE Movieid = " + id;
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                UpdateDataBox();
+                //Re-search 
+                DataView DV = new DataView(datatable);
+                DV.RowFilter = string.Format("MovieTitle LIKE '%{0}%'", uxSearchBox.Text);
+                uxSearchGrid.DataSource = DV;
+            }
+        }
+        private void UpdateDataBox()
+        {
+            sqlconnection = new SqlConnection(ConnectionString);
+            Query = "Select * FROM MovieInfo.Movie";
+            sqlcommand = new SqlCommand(Query, sqlconnection);
+            sqladapter = new SqlDataAdapter();
+            datatable = new DataTable();
+            sqladapter.SelectCommand = sqlcommand;
+            sqladapter.Fill(datatable);
+            uxSearchGrid.DataSource = datatable;
         }
     }
 }

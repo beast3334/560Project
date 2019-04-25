@@ -21,6 +21,16 @@ namespace Cis560DB
         private string _movieTitle;
         private string _review;
 
+        SqlConnection sqlconnection;
+        SqlCommand sqlcommand;
+        string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
+
+        string Query;
+        DataSet dataset;
+        DataTable datatable;
+        SqlDataAdapter sqladapter;
+
+
         public event enableReviewButton SubmitEvent;
 
         public uxDBReviewForm()
@@ -50,20 +60,7 @@ namespace Cis560DB
 
         }
 
-        private void uxRatingChanged(object sender, EventArgs e)
-        {
-            _rating = Int32.Parse(uxRatingBox.Text.Substring(0, 1));
-        }
-
-        private void uxMovieChanged(object sender, EventArgs e)
-        {
-            _movieTitle = uxMovietTitleBox.Text;
-        }
-
-        private void uxReviewTextBox_TextChanged(object sender, EventArgs e)
-        {
-            _review = uxReviewTextBox.Text;
-        }
+        
 
         private void uxSubmit_Click(object sender, EventArgs e)
         {          
@@ -82,6 +79,18 @@ namespace Cis560DB
             } else {
                 MessageBox.Show("Please fill out all fields.");
             }
+        }
+
+        private void uxDBReviewForm_Load(object sender, EventArgs e)
+        {
+            sqlconnection = new SqlConnection(ConnectionString);
+            Query = "Select * FROM MovieInfo.Movie";
+            sqlcommand = new SqlCommand(Query, sqlconnection);
+            sqladapter = new SqlDataAdapter();
+            datatable = new DataTable();
+            sqladapter.SelectCommand = sqlcommand;
+            sqladapter.Fill(datatable);
+            uxMovieGrid.DataSource = datatable;
         }
     }
 }
