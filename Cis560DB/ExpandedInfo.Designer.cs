@@ -48,7 +48,6 @@
             this.uxCastGrid.ReadOnly = true;
             this.uxCastGrid.Size = new System.Drawing.Size(395, 346);
             this.uxCastGrid.TabIndex = 1;
-            this.uxCastGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uxCastGrid_CellContentClick);
             // 
             // uxReviewGrid
             // 
@@ -71,7 +70,6 @@
             this.uxCastLabel.Size = new System.Drawing.Size(42, 20);
             this.uxCastLabel.TabIndex = 2;
             this.uxCastLabel.Text = "Cast";
-            this.uxCastLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // label1
             // 

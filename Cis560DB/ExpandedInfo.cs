@@ -13,56 +13,70 @@ namespace Cis560DB
 {
     public partial class ExpandedInfo : Form
     {
+        // // Represents Connection to the SQL Server database
+        public SqlConnection sqlconnection;
+        // Statement or stored procedure to be executed against a SQL Server database
+        public SqlCommand sqlcommand;
+        //Represents a set of data
+        public DataSet dataset;
+        // Table representing data, holds cast of movies
+        public DataTable dataTable_Cast;
+        // Table representing data, holds movie ratings by reviewers
+        public DataTable dataTable_Ratings;
+        // Represents a set of data commands and a database connection that are used to fill a dataSet and update the database.
+        public SqlDataAdapter sqladapter;
+
+
+        // String which contains the prameters to establsh connection to sql database
+        public string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
+        //String used to write and store a sql query
+        public string Query1;
+        //String used to write and store a sql query
+        public string Query2;
+        //String used to write and store a sql query, query for finding a movie's director
+        public string _directorQuery;
+
+        /// <summary>
+        /// Initializes the ExpandedInfo Form
+        /// </summary>
         public ExpandedInfo()
         {
             InitializeComponent();
         }
-        public SqlConnection sqlconnection;
-        public SqlCommand sqlcommand;
-        public string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
 
-        public string Query1;
-        public string Query2;
-        public string Query3;
-        public DataSet dataset;
-        public DataTable datatable1;
-        public DataTable datatable2;
-        public SqlDataAdapter sqladapter;
-
+        /// <summary>
+        /// After the ExpandedInfo Form is loaded, populates the uxReviewGrid with movie ratings and the uxCastGrid with movies cast members
+        /// </summary>
         private void ExpandedInfo_Load(object sender, EventArgs e)
         {
             sqlconnection = new SqlConnection(ConnectionString);
             
             sqlcommand = new SqlCommand(Query1, sqlconnection);
             sqladapter = new SqlDataAdapter();
-            datatable1 = new DataTable();
+            dataTable_Cast = new DataTable();
             
             sqladapter.SelectCommand = sqlcommand;
-            uxCastGrid.DataSource = datatable1;
+            uxCastGrid.DataSource = dataTable_Cast;
 
-            datatable2 = new DataTable();
+            dataTable_Ratings = new DataTable();
             sqlcommand = new SqlCommand(Query2, sqlconnection);
-            sqladapter.Fill(datatable1);
+            sqladapter.Fill(dataTable_Cast);
 
            
             sqladapter.SelectCommand = sqlcommand;
-            uxReviewGrid.DataSource = datatable2;
-            sqladapter.Fill(datatable2);
+            uxReviewGrid.DataSource = dataTable_Ratings;
+            sqladapter.Fill(dataTable_Ratings);
             uxDirectorLabel.Text = "Director: " + GetDirector(sqlconnection);
         }
 
-        private void uxCastGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// Retrieves the director of a specific movie. 
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns a string value which represents the name of a director of a movie.</returns>
         private string GetDirector(SqlConnection connection)
         {
-            SqlCommand cmd = new SqlCommand(Query3, connection);
+            SqlCommand cmd = new SqlCommand(_directorQuery, connection);
             connection.Open();
             cmd.CommandType = CommandType.Text;
             using (SqlDataReader rdr = cmd.ExecuteReader())
