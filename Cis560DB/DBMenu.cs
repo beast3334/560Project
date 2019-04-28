@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
+    /// <summary>
+    ///  DBMenu Class
+    /// </summary>
     public partial class uxDBMenu : Form
     {
         // uxDBInsertForm object, represents the insert form to the database. 

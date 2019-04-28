@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
+    /// <summary>
+    ///  ExpandedInfo Class
+    /// </summary>
     public partial class ExpandedInfo : Form
     {
         // // Represents Connection to the SQL Server database

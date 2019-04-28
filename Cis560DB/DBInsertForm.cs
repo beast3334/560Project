@@ -15,7 +15,7 @@ namespace Cis560DB
     public delegate void enableButtonsInsert();
 
     /// <summary>
-    /// uxDBInsertForm Class
+    /// DBInsertForm Class
     /// </summary>
     public partial class uxDBInsertForm : Form
     {
@@ -31,9 +31,8 @@ namespace Cis560DB
         // Release Date of movie being added to database
         private DateTime _releaseDate;
         // Cast list of movie being added to database(Optional)
-        private List<string> castList = new List<string>();
-        
-        // 
+        private List<string> castList = new List<string>();        
+        // BindingList made of strings, used to bind an cast of actors to a movie
         private BindingList<string> bs = new BindingList<string>();
 
         /// <summary>

@@ -16,9 +16,11 @@ namespace Cis560DB
     /// </summary>
     public delegate void enableButtonsSearch();
 
+    /// <summary>
+    ///  DBSearchForm Class
+    /// </summary>
     public partial class uxDBSearchForm : Form
-    {
-        
+    {        
         public event enableButtonsSearch _enableButtons;
         // Represents Connection to the SQL Server database
         SqlConnection sqlconnection;
@@ -76,7 +78,7 @@ namespace Cis560DB
                 string s = uxSearchGrid.SelectedCells[0].Value.ToString();
                 ei.Query1 = "Select A.FirstName, A.LastName, C.Role From MovieInfo.Actor A INNER JOIN MovieInfo.[Cast] C ON C.ActorId = A.ActorId WHERE C.MovieId = " + s;
                 ei.Query2 = "Select R.ReviewerId, MR.ReviewerName, R.ReviewerRating FROM MovieInfo.Rating R INNER JOIN MovieInfo.Reviewer MR ON MR.ReviewerId = R.ReviewerId WHERE R.MovieId =  " + uxSearchGrid.SelectedCells[0].Value.ToString();
-                ei.Query3 = "SELECT FirstName, LastName From MovieInfo.Director D INNER JOIN MovieInfo.MovieDirector MD ON MD.DirectorId = D.DirectorId WHERE MD.MovieId = " + uxSearchGrid.SelectedCells[0].Value.ToString();
+                ei._directorQuery = "SELECT FirstName, LastName From MovieInfo.Director D INNER JOIN MovieInfo.MovieDirector MD ON MD.DirectorId = D.DirectorId WHERE MD.MovieId = " + uxSearchGrid.SelectedCells[0].Value.ToString();
                 ei.Show();
             } catch (ArgumentOutOfRangeException) {
                 MessageBox.Show("No movie was selected!\nPlease select a movie from the table before continuing.");

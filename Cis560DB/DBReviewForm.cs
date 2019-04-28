@@ -12,54 +12,40 @@ using System.Windows.Forms;
 
 namespace Cis560DB
 {
+    //Delegate used to unlock all button on the DBMenu Form from the DBReviewForm
     public delegate void enableButtonsReview();
 
+    /// <summary>
+    /// DBReviewForm Class
+    /// </summary>
     public partial class uxDBReviewForm : Form
     {
-
-        private int _rating;
-        private string _movieTitle;
-        private string _review;
-
+        public event enableButtonsReview _enableButtons;
+        // Represents Connection to the SQL Server database
         SqlConnection sqlconnection;
+        // Statement or stored procedure to be executed against a SQL Server database
         SqlCommand sqlcommand;
-        string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
-
-        string Query;
-        DataSet dataset;
+        // Table representing data
         DataTable datatable;
+        // Represents a set of data commands and a database connection that are used to fill a dataSet and update the database.
         SqlDataAdapter sqladapter;
 
+        // String which contains the prameters to establsh connection to sql database
+        string ConnectionString = "Data Source=mssql.cs.ksu.edu;Initial Catalog=cis560_team24;Integrated Security=True";
+        //// String used to write and store a sql query
+        string Query;
 
-        public event enableButtonsReview _enableButtons;
-
+        /// <summary>
+        /// Initializes the DBReviewForm
+        /// </summary>
         public uxDBReviewForm()
         {
             InitializeComponent();
-            /*
-            using (SqlConnection connection = new SqlConnection()) {        // Finish Line
-                try {
-
-                    string query = "SELECT MovieTitle FROM Movie"
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conection);
-                    connection.Open();
-                    DataSet set = new DataSet();
-                    adapter.Fill(set, "Movies");
-                    SqlCommand command = new SqlCommand(query, db.Connection);
-            
-                    SqlDataReader reader = .ExecuteReader();
-                    while(reader.Read()){
-                        uxMovietTitleBox.Items.Add(title);
-                    }
-
-                } catch (Exception ex){
-                    MessageBox.Show("Error Occured: " + ex);
-                }
-            }
-            */
-
         }
 
+        /// <summary>
+        /// Loads data from sql tables into the DataGridView uxMovieGrid after the DBReviewForm is load by the user.
+        /// </summary>
         private void uxDBReviewForm_Load(object sender, EventArgs e)
         {
             sqlconnection = new SqlConnection(ConnectionString);
@@ -72,6 +58,9 @@ namespace Cis560DB
             uxMovieGrid.DataSource = datatable;
         }
 
+        /// <summary>
+        /// Adds a rating of a movie from a user to the database. 
+        /// </summary>
         private void uxSubmitButton_Click(object sender, EventArgs e)
         {
             if(!(uxOneStar.Checked || uxTwoStar.Checked || uxThreeStar.Checked || uxFourStar.Checked || uxFiveStar.Checked))
@@ -85,8 +74,6 @@ namespace Cis560DB
                 connection.Open();
                 if (!ReviewerExists(connection))
                 {
-
-
                     //Insert MovieInfo.Reviewer information
                     string query = "INSERT INTO MovieInfo.Reviewer (ReviewerName) VALUES (@param1)";
                     using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -123,6 +110,12 @@ namespace Cis560DB
             }
             MessageBox.Show("Succesfully added review!");
         }
+
+        /// <summary>
+        /// Checks if a reviewer already exist in the database.
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns a boolean value which represents if a reviewer already exists in the database. </returns>
         private bool ReviewerExists(SqlConnection connection)
         {
             SqlCommand cmd = new SqlCommand("MovieInfo.CHECK_IF_REVIEWER_EXISTS", connection);
@@ -145,6 +138,12 @@ namespace Cis560DB
             }
             return false;
         }
+
+        /// <summary>
+        /// Retrieves the id of a reviewer with a specific name.
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns an int value that represents the id of an reviewer. </returns>
         private int GetReviewerId(SqlConnection connection)
         {     
             SqlCommand cmd = new SqlCommand("MovieInfo.GET_REVIEWER_ID", connection);
@@ -159,6 +158,11 @@ namespace Cis560DB
             }
             return 0;
         }
+
+        /// <summary>
+        /// Gets the value of a movie rating. 
+        /// </summary>
+        /// <returns>Returns an int value that represents the value of a rating. </returns>
         private int GetRating()
         {
             if(uxOneStar.Checked)
@@ -186,6 +190,12 @@ namespace Cis560DB
                 return 0;
             }
         }
+
+        /// <summary>
+        /// Retrieves the number of reviews for a specific movie. 
+        /// </summary>
+        /// <param name="connection">SqlConnection used to establishes a connection to the database.</param>
+        /// <returns>Returns an int value that represents the id of an reviewer</returns>
         private int GetReviewCount(SqlConnection connection)
         {
             SqlCommand cmd = new SqlCommand("MovieInfo.GET_REVIEW_COUNT", connection);
@@ -201,6 +211,9 @@ namespace Cis560DB
             return 0;
         }
 
+        /// <summary>
+        /// Updates the movies loaded in the uxMovieGrid when the text in the uxSearchBox is changed. 
+        /// </summary>
         private void uxSearchBox_TextChanged(object sender, EventArgs e)
         {
             DataView DV = new DataView(datatable);
@@ -208,10 +221,12 @@ namespace Cis560DB
             uxMovieGrid.DataSource = DV;
         }
 
+        /// <summary>
+        /// When the form closes, uses the delegate to unlock the buttons in the DBMenu Form.
+        /// </summary>
         private void ClosingForm(object sender, FormClosedEventArgs e)
         {
             _enableButtons();
         }
-
     }
 }
