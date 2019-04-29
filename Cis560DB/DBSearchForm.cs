@@ -97,7 +97,7 @@ namespace Cis560DB
                 {
                     string id = uxSearchGrid.SelectedCells[0].Value.ToString();
                     connection.Open();
-                    string query = "DELETE FROM MovieInfo.Movie WHERE Movieid = " + id + " DELETE FROM MovieInfo.[CAST} WHERE Movieid = " + id;
+                    string query = "DELETE FROM MovieInfo.Movie WHERE Movieid = " + id + " DELETE FROM MovieInfo.[CAST] WHERE Movieid = " + id;
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
                         cmd.CommandType = CommandType.Text;
