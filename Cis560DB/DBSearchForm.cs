@@ -117,14 +117,21 @@ namespace Cis560DB
         /// </summary>
         private void UpdateDataBox()
         {
-            sqlconnection = new SqlConnection(ConnectionString);
-            Query = "Select M.MovieId, M.MovieTitle, STRING_AGG(G.GenreTitle, ',') AS Genres, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice FROM MovieInfo.Movie M INNER JOIN MovieInfo.MovieGenre MG ON MG.MovieId = M.MovieId INNER JOIN MovieInfo.Genre G ON G.GenreId = MG.GenreId Group By M.MovieId, M.MovieTitle, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice";
-            sqlcommand = new SqlCommand(Query, sqlconnection);
-            sqladapter = new SqlDataAdapter();
-            datatable = new DataTable();
-            sqladapter.SelectCommand = sqlcommand;
-            sqladapter.Fill(datatable);
-            uxSearchGrid.DataSource = datatable;
+            try
+            {
+                sqlconnection = new SqlConnection(ConnectionString);
+                Query = "Select M.MovieId, M.MovieTitle, STRING_AGG(G.GenreTitle, ',') AS Genres, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice FROM MovieInfo.Movie M INNER JOIN MovieInfo.MovieGenre MG ON MG.MovieId = M.MovieId INNER JOIN MovieInfo.Genre G ON G.GenreId = MG.GenreId Group By M.MovieId, M.MovieTitle, M.[Language], M.ReleaseDate, M.AllTimeBoxOffice";
+                sqlcommand = new SqlCommand(Query, sqlconnection);
+                sqladapter = new SqlDataAdapter();
+                datatable = new DataTable();
+                sqladapter.SelectCommand = sqlcommand;
+                sqladapter.Fill(datatable);
+                uxSearchGrid.DataSource = datatable;
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong loading the data, please try again later");
+            }
         }
 
         /// <summary>

@@ -63,50 +63,57 @@ namespace Cis560DB
         /// </summary>
         private void uxSubmitButton_Click(object sender, EventArgs e)
         {
-            if(!(uxOneStar.Checked || uxTwoStar.Checked || uxThreeStar.Checked || uxFourStar.Checked || uxFiveStar.Checked))
+            try
             {
-                MessageBox.Show("You must select a rating");
-                return;
+                if (!(uxOneStar.Checked || uxTwoStar.Checked || uxThreeStar.Checked || uxFourStar.Checked || uxFiveStar.Checked))
+                {
+                    MessageBox.Show("You must select a rating");
+                    return;
+                }
+                string s = uxMovieGrid.SelectedCells[0].Value.ToString();
+                using (SqlConnection connection = new SqlConnection("Data Source = mssql.cs.ksu.edu; Initial Catalog = cis560_team24; Integrated Security = True"))
+                {
+                    connection.Open();
+                    if (!ReviewerExists(connection))
+                    {
+                        //Insert MovieInfo.Reviewer information
+                        string query = "INSERT INTO MovieInfo.Reviewer (ReviewerName) VALUES (@param1)";
+                        using (SqlCommand cmd = new SqlCommand(query, connection))
+                        {
+
+                            cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 128).Value = uxFirstName.Text;
+
+                            cmd.CommandType = CommandType.Text;
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Clear();
+                        }
+                    }
+                    //Insert Review Information
+
+                    try
+                    {
+                        string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
+                        using (SqlCommand cmd = new SqlCommand(query2, connection))
+                        {
+                            cmd.Parameters.Add("@param1", SqlDbType.Int).Value = uxMovieGrid.SelectedCells[0].Value.ToString();
+                            cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetReviewerId(connection);
+                            cmd.Parameters.Add("@param3", SqlDbType.Int).Value = GetRating();
+                            cmd.Parameters.Add("@param4", SqlDbType.Int).Value = GetReviewCount(connection);
+                            cmd.CommandType = CommandType.Text;
+                            cmd.ExecuteNonQuery();
+
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("A review by that person already exists for this movie!");
+                    }
+
+                }
             }
-            string s = uxMovieGrid.SelectedCells[0].Value.ToString();
-            using (SqlConnection connection = new SqlConnection("Data Source = mssql.cs.ksu.edu; Initial Catalog = cis560_team24; Integrated Security = True"))
+            catch
             {
-                connection.Open();
-                if (!ReviewerExists(connection))
-                {
-                    //Insert MovieInfo.Reviewer information
-                    string query = "INSERT INTO MovieInfo.Reviewer (ReviewerName) VALUES (@param1)";
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                    
-                        cmd.Parameters.Add("@param1", SqlDbType.NVarChar, 128).Value = uxFirstName.Text;
-                        
-                        cmd.CommandType = CommandType.Text;
-                        cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
-                    }
-                }
-                //Insert Review Information
-
-                try
-                {
-                    string query2 = "INSERT INTO MovieInfo.Rating (MovieId, ReviewerId, ReviewerRating, numberofRatings) VALUES (@param1, @param2, @param3, @param4)";
-                    using (SqlCommand cmd = new SqlCommand(query2, connection))
-                    {
-                        cmd.Parameters.Add("@param1", SqlDbType.Int).Value = uxMovieGrid.SelectedCells[0].Value.ToString();
-                        cmd.Parameters.Add("@param2", SqlDbType.Int).Value = GetReviewerId(connection);
-                        cmd.Parameters.Add("@param3", SqlDbType.Int).Value = GetRating();
-                        cmd.Parameters.Add("@param4", SqlDbType.Int).Value = GetReviewCount(connection);
-                        cmd.CommandType = CommandType.Text;
-                        cmd.ExecuteNonQuery();
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("A review by that person already exists for this movie!");
-                }
-                
+                MessageBox.Show("Something went wrong, please try again later");
             }
             MessageBox.Show("Succesfully added review!");
         }
