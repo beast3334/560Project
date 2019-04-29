@@ -196,7 +196,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(708, 584);
             this.Name = "uxDBReviewForm";
-            this.Text = "DBReviewForm";
+            this.Text = "Rating";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.uxDBReviewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uxMovieGrid)).EndInit();

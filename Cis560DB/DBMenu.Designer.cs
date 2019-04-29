@@ -75,7 +75,7 @@
             this.MaximumSize = new System.Drawing.Size(300, 226);
             this.MinimumSize = new System.Drawing.Size(300, 226);
             this.Name = "uxDBMenu";
-            this.Text = "DBMenu";
+            this.Text = "Menu";
             this.ResumeLayout(false);
 
         }

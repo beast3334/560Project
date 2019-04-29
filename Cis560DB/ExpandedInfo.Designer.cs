@@ -102,7 +102,7 @@
             this.Controls.Add(this.uxReviewGrid);
             this.Controls.Add(this.uxCastGrid);
             this.Name = "ExpandedInfo";
-            this.Text = "ExpandedInfo";
+            this.Text = "Expanded Info";
             this.Load += new System.EventHandler(this.ExpandedInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uxCastGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxReviewGrid)).EndInit();

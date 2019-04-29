@@ -101,9 +101,9 @@
             this.uxProfitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxProfitLabel.Location = new System.Drawing.Point(12, 61);
             this.uxProfitLabel.Name = "uxProfitLabel";
-            this.uxProfitLabel.Size = new System.Drawing.Size(168, 20);
+            this.uxProfitLabel.Size = new System.Drawing.Size(181, 20);
             this.uxProfitLabel.TabIndex = 18;
-            this.uxProfitLabel.Text = "Box Office Revenue * :";
+            this.uxProfitLabel.Text = "Box Office Revenue * : $";
             // 
             // uxCostLabel
             // 
@@ -355,7 +355,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(803, 376);
             this.Name = "uxDBInsertForm";
-            this.Text = "DBInsertForm";
+            this.Text = "Add Movie";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosingForm);
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
