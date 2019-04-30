@@ -231,7 +231,7 @@ namespace Cis560DB
             bs.Add(uxFirstName.Text + "|" + uxLastName.Text + "|" + uxGender.Text + "|" + uxRole.Text);
             uxFirstName.Clear();
             uxLastName.Clear();
-            uxGender.Clear();
+            uxGender.SelectedIndex = -1;
             uxRole.Clear();
         }
 

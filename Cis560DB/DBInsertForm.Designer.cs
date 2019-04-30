@@ -52,9 +52,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.uxGender = new System.Windows.Forms.TextBox();
             this.uxLastName = new System.Windows.Forms.TextBox();
             this.uxFirstName = new System.Windows.Forms.TextBox();
+            this.uxGender = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.actorBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -227,6 +227,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.uxGender);
             this.panel1.Controls.Add(this.uxCastList);
             this.panel1.Controls.Add(this.uxRole);
             this.panel1.Controls.Add(this.label5);
@@ -234,7 +235,6 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.uxGender);
             this.panel1.Controls.Add(this.uxLastName);
             this.panel1.Controls.Add(this.uxFirstName);
             this.panel1.Controls.Add(this.label1);
@@ -309,13 +309,6 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "First Name:";
             // 
-            // uxGender
-            // 
-            this.uxGender.Location = new System.Drawing.Point(215, 50);
-            this.uxGender.Name = "uxGender";
-            this.uxGender.Size = new System.Drawing.Size(66, 20);
-            this.uxGender.TabIndex = 35;
-            // 
             // uxLastName
             // 
             this.uxLastName.Location = new System.Drawing.Point(131, 50);
@@ -329,6 +322,18 @@
             this.uxFirstName.Name = "uxFirstName";
             this.uxFirstName.Size = new System.Drawing.Size(78, 20);
             this.uxFirstName.TabIndex = 33;
+            // 
+            // uxGender
+            // 
+            this.uxGender.FormattingEnabled = true;
+            this.uxGender.Items.AddRange(new object[] {
+            "M",
+            "F",
+            "N/A"});
+            this.uxGender.Location = new System.Drawing.Point(215, 49);
+            this.uxGender.Name = "uxGender";
+            this.uxGender.Size = new System.Drawing.Size(63, 21);
+            this.uxGender.TabIndex = 33;
             // 
             // uxDBInsertForm
             // 
@@ -382,7 +387,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource actorBindingSource;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox uxGender;
         private System.Windows.Forms.TextBox uxLastName;
         private System.Windows.Forms.TextBox uxFirstName;
         private System.Windows.Forms.TextBox uxRole;
@@ -392,6 +396,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox uxCastList;
+        private System.Windows.Forms.ComboBox uxGender;
     }
 }
 
